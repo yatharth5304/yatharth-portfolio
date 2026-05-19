@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Skills</title>
+<link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+
+<!-- Navbar -->
+<div th:replace="~{layout/navbar :: navbar}"></div>
+
+<div class="section">
+    <h1 class="section-title">Skills</h1>
+
+    <!-- Programming -->
+    <h2 class="skill-category">Programming</h2>
+    <div class="skills-grid">
+        <div th:each="s : ${programming}">
+            <div th:replace="~{layout/skill-card :: skillCard(name=${s.name}, rating=${s.rating})}"></div>
+        </div>
+    </div>
+
+    <!-- Technologies -->
+    <h2 class="skill-category">Technologies</h2>
+    <div class="skills-grid">
+        <div th:each="s : ${technologies}">
+            <div th:replace="~{layout/skill-card :: skillCard(name=${s.name}, rating=${s.rating})}"></div>
+        </div>
+    </div>
+
+    <!-- Tools -->
+    <h2 class="skill-category">Tools</h2>
+    <div class="skills-grid">
+        <div th:each="s : ${tools}">
+            <div th:replace="~{layout/skill-card :: skillCard(name=${s.name}, rating=${s.rating})}"></div>
+        </div>
+    </div>
+
+</div>
+
+<!-- Footer -->
+<div th:replace="~{layout/footer :: footer}"></div>
+
+</body>
+</html>

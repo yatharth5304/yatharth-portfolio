@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Admin Dashboard</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+
+<div class="admin-container">
+
+    <h1>Admin Dashboard</h1>
+
+    <!-- ADD PROJECT -->
+    <section>
+        <h2>Add Project</h2>
+
+        <form th:action="@{/admin/addProject}" method="post">
+            <input type="text" name="title" placeholder="Title" required>
+            <textarea name="description" placeholder="Description"></textarea>
+            <input type="text" name="technologies" placeholder="Technologies">
+            <input type="text" name="githubLink" placeholder="GitHub URL">
+            <button type="submit">Save Project</button>
+        </form>
+    </section>
+
+    <!-- PROJECT LIST -->
+    <section>
+        <h2>Projects</h2>
+
+        <table>
+            <tr>
+                <th>Title</th>
+                <th>Tech</th>
+                <th>GitHub</th>
+            </tr>
+
+            <tr th:each="p : ${projects}">
+                <td th:text="${p.title}"></td>
+                <td th:text="${p.technologies}"></td>
+                <td><a th:href="${p.githubLink}" target="_blank">View</a></td>
+            </tr>
+        </table>
+    </section>
+
+    <!-- ADD SKILL -->
+    <section>
+        <h2>Add Skill</h2>
+
+        <form th:action="@{/admin/addSkill}" method="post">
+            <input type="text" name="name" placeholder="Skill Name">
+
+            <select name="category">
+                <option>Programming</option>
+                <option>Technologies</option>
+                <option>Tools</option>
+            </select>
+
+            <select name="rating">
+                <option th:each="i : ${#numbers.sequence(1,5)}"
+                        th:value="${i}"
+                        th:text="${i}">
+                </option>
+            </select>
+
+            <button type="submit">Save Skill</button>
+        </form>
+    </section>
+
+</div>
+
+</body>
+</html>

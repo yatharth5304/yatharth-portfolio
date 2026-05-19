@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<body>
+
+<header class="nav-wrapper" th:fragment="navbar">
+    <nav class="navbar-modern">
+
+        <!-- Brand -->
+        <div class="nav-brand">
+            <span class="brand-dot"></span>
+            <span class="brand-name">Yatharth</span>
+        </div>
+
+        <!-- Hamburger (mobile) -->
+        <div class="hamburger" onclick="toggleMenu()">
+            ☰
+        </div>
+
+        <!-- Links -->
+        <ul class="nav-menu" id="navMenu">
+            <li><a href="/" class="nav-link" data-path="/">Home</a></li>
+            <li><a href="/about" class="nav-link" data-path="about">About</a></li>
+            <li><a href="/skills" class="nav-link" data-path="skills">Skills</a></li>
+            <li><a href="/projects" class="nav-link" data-path="projects">Projects</a></li>
+            <li><a href="/experience" class="nav-link" data-path="experience">Experience</a></li>
+
+            <li class="mobile-only">
+                <a href="/resume" class="nav-link">Download Resume</a>
+            </li>
+        </ul>
+
+        <div class="nav-cta desktop-only">
+            <a href="/resume" class="cta-btn">Resume</a>
+        </div>
+
+    </nav>
+</header>
+
+<script>
+    function toggleMenu() {
+        document.getElementById("navMenu").classList.toggle("show");
+    }
+
+    const currentPath = window.location.pathname;
+    document.querySelectorAll(".nav-link").forEach(link => {
+        const path = link.getAttribute("data-path");
+        if (
+            (path === "/" && currentPath === "/") ||
+            (path !== "/" && currentPath.includes(path))
+        ) {
+            link.classList.add("active");
+        }
+    });
+</script>
+
+</body>
+</html>

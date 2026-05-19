@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+
+<div class="skill-card" th:fragment="skillCard(name, rating)">
+
+    <span class="skill-name" th:text="${name}">
+        Skill Name
+    </span>
+
+    <div class="stars">
+        <span th:each="i : ${#numbers.sequence(1,5)}"
+              class="star"
+              th:classappend="${i <= rating} ? ' filled'">
+            ★
+        </span>
+    </div>
+
+</div>
+
+</body>
+</html>
