@@ -31,6 +31,8 @@ public class ProjectService {
 
     // save project (for admin panel)
     public void save(Project project) {
+        project.setGithubLink(normalizeUrl(project.getGithubLink()));
+        project.setLiveLink(normalizeUrl(project.getLiveLink()));
         repo.save(project);
     }
 
@@ -40,5 +42,22 @@ public class ProjectService {
             throw new ResourceNotFoundException("Project not found for id=" + id);
         }
         repo.deleteById(id);
+    }
+
+    private String normalizeUrl(String value) {
+        if (value == null) {
+            return null;
+        }
+
+        String trimmed = value.trim();
+        if (trimmed.isEmpty()) {
+            return null;
+        }
+
+        if (trimmed.startsWith("http://") || trimmed.startsWith("https://")) {
+            return trimmed;
+        }
+
+        return "https://" + trimmed;
     }
 }

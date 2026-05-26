@@ -282,6 +282,17 @@
             }, 3500);
         }
 
+        function normalizeUrl(value) {
+            const trimmed = (value || '').trim();
+            if (!trimmed) {
+                return '';
+            }
+            if (trimmed.startsWith('http://') || trimmed.startsWith('https://')) {
+                return trimmed;
+            }
+            return `https://${trimmed}`;
+        }
+
         // Load Data on Start
         document.addEventListener('DOMContentLoaded', () => {
             loadProjects();
@@ -437,8 +448,8 @@
                 title: document.getElementById('p_title').value,
                 description: document.getElementById('p_description').value,
                 technologies: document.getElementById('p_technologies').value,
-                githubLink: document.getElementById('p_githubLink').value,
-                liveLink: document.getElementById('p_liveLink').value
+                githubLink: normalizeUrl(document.getElementById('p_githubLink').value),
+                liveLink: normalizeUrl(document.getElementById('p_liveLink').value)
             };
             
             const idVal = document.getElementById('p_id').value;
