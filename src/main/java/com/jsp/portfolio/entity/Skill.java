@@ -1,6 +1,10 @@
 package com.jsp.portfolio.entity;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Max;
+import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Size;
 
 @Entity
 public class Skill {
@@ -9,8 +13,16 @@ public class Skill {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
+    @NotBlank
+    @Size(max = 80)
     private String name;
-    private int rating; // 0 - 5
+
+    @Min(1)
+    @Max(5)
+    private int rating;
+
+    @NotBlank
+    @Size(max = 80)
     private String category;
 
     public String getCategory() {
