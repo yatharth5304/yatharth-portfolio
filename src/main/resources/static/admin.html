@@ -235,6 +235,8 @@
     <script>
         let allProjects = [];
         let allSkills = [];
+        let csrfToken = null;
+        let csrfHeaderName = 'X-XSRF-TOKEN';
 
         function getCookie(name) {
             const value = `; ${document.cookie}`;
@@ -246,10 +248,26 @@
         }
 
         function withCsrfHeaders(headers = {}) {
-            const token = getCookie('XSRF-TOKEN');
+            const token = csrfToken || getCookie('XSRF-TOKEN');
             return token
-                ? { ...headers, 'X-XSRF-TOKEN': decodeURIComponent(token) }
+                ? { ...headers, [csrfHeaderName]: decodeURIComponent(token) }
                 : headers;
+        }
+
+        async function initializeAdminSession() {
+            const response = await fetch('/api/admin/csrf', {
+                method: 'GET',
+                credentials: 'same-origin',
+                cache: 'no-store'
+            });
+
+            if (!response.ok) {
+                throw new Error(`Unable to initialize admin session (${response.status})`);
+            }
+
+            const payload = await response.json();
+            csrfToken = payload.token || null;
+            csrfHeaderName = payload.headerName || 'X-XSRF-TOKEN';
         }
 
         async function getApiMessage(response, fallbackMessage) {
@@ -294,7 +312,16 @@
         }
 
         // Load Data on Start
-        document.addEventListener('DOMContentLoaded', () => {
+        document.addEventListener('DOMContentLoaded', async () => {
+            try {
+                await initializeAdminSession();
+            } catch (error) {
+                console.error('Failed to initialize admin session', error);
+                showStatus('p_status', 'Admin session could not be initialized. Refresh the page and sign in again.', true);
+                showStatus('s_status', 'Admin session could not be initialized. Refresh the page and sign in again.', true);
+                return;
+            }
+
             loadProjects();
             loadSkills();
         });
@@ -382,6 +409,7 @@
             try {
                 const res = await fetch(`/api/admin/deleteProject/${id}`, {
                     method: 'DELETE',
+                    credentials: 'same-origin',
                     headers: withCsrfHeaders()
                 });
                 if (res.ok) {
@@ -423,6 +451,7 @@
             try {
                 const res = await fetch(`/api/admin/deleteSkill/${id}`, {
                     method: 'DELETE',
+                    credentials: 'same-origin',
                     headers: withCsrfHeaders()
                 });
                 if (res.ok) {
@@ -460,6 +489,7 @@
             try {
                 const res = await fetch('/api/admin/addProject', {
                     method: 'POST',
+                    credentials: 'same-origin',
                     headers: withCsrfHeaders({ 'Content-Type': 'application/json' }),
                     body: JSON.stringify(project)
                 });
@@ -469,7 +499,9 @@
                     resetProjectForm();
                     loadProjects(); // Reload list
                 } else {
-                    const message = await getApiMessage(res, 'Error saving project');
+                    const message = res.status === 403
+                        ? 'Admin session expired or CSRF token missing. Refresh the page and sign in again.'
+                        : await getApiMessage(res, 'Error saving project');
                     showStatus('p_status', message, true);
                 }
             } catch (err) {
@@ -502,6 +534,7 @@
             try {
                 const res = await fetch('/api/admin/addSkill', {
                     method: 'POST',
+                    credentials: 'same-origin',
                     headers: withCsrfHeaders({ 'Content-Type': 'application/json' }),
                     body: JSON.stringify(skill)
                 });
@@ -511,7 +544,9 @@
                     resetSkillForm();
                     loadSkills(); // Reload list
                 } else {
-                    const message = await getApiMessage(res, 'Error saving skill');
+                    const message = res.status === 403
+                        ? 'Admin session expired or CSRF token missing. Refresh the page and sign in again.'
+                        : await getApiMessage(res, 'Error saving skill');
                     showStatus('s_status', message, true);
                 }
             } catch (err) {

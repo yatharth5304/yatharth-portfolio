@@ -1,6 +1,7 @@
 package com.jsp.portfolio.controller;
 
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.web.csrf.CsrfToken;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import jakarta.validation.Valid;
@@ -24,6 +25,15 @@ public class AdminController {
     public AdminController(ProjectService projectService, SkillService skillService) {
         this.projectService = projectService;
         this.skillService = skillService;
+    }
+
+    @GetMapping("/csrf")
+    public ResponseEntity<?> csrf(CsrfToken csrfToken) {
+        return ResponseEntity.ok(Map.of(
+                "token", csrfToken.getToken(),
+                "headerName", csrfToken.getHeaderName(),
+                "parameterName", csrfToken.getParameterName()
+        ));
     }
 
     @PostMapping("/addProject")
