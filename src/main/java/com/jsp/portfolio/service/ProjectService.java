@@ -2,17 +2,20 @@ package com.jsp.portfolio.service;
 
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.jsp.portfolio.entity.Project;
+import com.jsp.portfolio.exception.ResourceNotFoundException;
 import com.jsp.portfolio.repository.ProjectRepository;
 
 @Service
 public class ProjectService {
 
-    @Autowired
-    private ProjectRepository repo;
+    private final ProjectRepository repo;
+
+    public ProjectService(ProjectRepository repo) {
+        this.repo = repo;
+    }
 
     // fetch all projects (for UI)
     public List<Project> getAllProjects() {
@@ -33,6 +36,9 @@ public class ProjectService {
 
     // delete project (future use)
     public void deleteById(int id) {
+        if (!repo.existsById(id)) {
+            throw new ResourceNotFoundException("Project not found for id=" + id);
+        }
         repo.deleteById(id);
     }
 }

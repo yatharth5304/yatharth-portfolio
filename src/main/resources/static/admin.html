@@ -252,6 +252,36 @@
                 : headers;
         }
 
+        async function getApiMessage(response, fallbackMessage) {
+            try {
+                const payload = await response.json();
+                if (payload?.message) {
+                    return payload.message;
+                }
+                if (payload?.errors) {
+                    return Object.values(payload.errors).join(', ');
+                }
+            } catch (e) {
+                // no-op: fallback message will be used
+            }
+            return fallbackMessage;
+        }
+
+        function showStatus(statusElementId, message, isError = false) {
+            const statusEl = document.getElementById(statusElementId);
+            if (!statusEl) return;
+
+            statusEl.textContent = message;
+            statusEl.style.display = 'block';
+            statusEl.style.color = isError ? '#FCA5A5' : '#10B981';
+            statusEl.style.background = isError ? 'rgba(239, 68, 68, 0.12)' : 'rgba(16, 185, 129, 0.1)';
+            statusEl.style.border = isError ? '1px solid rgba(239, 68, 68, 0.25)' : '1px solid rgba(16, 185, 129, 0.2)';
+
+            setTimeout(() => {
+                statusEl.style.display = 'none';
+            }, 3500);
+        }
+
         // Load Data on Start
         document.addEventListener('DOMContentLoaded', () => {
             loadProjects();
@@ -343,8 +373,15 @@
                     method: 'DELETE',
                     headers: withCsrfHeaders()
                 });
-                if(res.ok) loadProjects();
-            } catch(e) { alert('Error deleting project'); }
+                if (res.ok) {
+                    loadProjects();
+                    return;
+                }
+                const message = await getApiMessage(res, 'Could not delete project');
+                alert(message);
+            } catch(e) {
+                alert('Error deleting project');
+            }
         }
 
         // Skill Edit & Reset
@@ -377,8 +414,15 @@
                     method: 'DELETE',
                     headers: withCsrfHeaders()
                 });
-                if(res.ok) loadSkills();
-            } catch(e) { alert('Error deleting skill'); }
+                if (res.ok) {
+                    loadSkills();
+                    return;
+                }
+                const message = await getApiMessage(res, 'Could not delete skill');
+                alert(message);
+            } catch(e) {
+                alert('Error deleting skill');
+            }
         }
 
         // Submit Project
@@ -409,15 +453,17 @@
                     body: JSON.stringify(project)
                 });
                 if (res.ok) {
-                    const status = document.getElementById('p_status');
-                    status.style.display = 'block';
+                    const message = await getApiMessage(res, 'Project saved successfully');
+                    showStatus('p_status', message, false);
                     resetProjectForm();
                     loadProjects(); // Reload list
-                    setTimeout(() => status.style.display = 'none', 3000);
+                } else {
+                    const message = await getApiMessage(res, 'Error saving project');
+                    showStatus('p_status', message, true);
                 }
             } catch (err) {
                 console.error(err);
-                alert('Error saving project. Is the server running?');
+                showStatus('p_status', 'Error saving project. Is the server running?', true);
             }
             btn.textContent = originalText;
             btn.disabled = false;
@@ -449,15 +495,17 @@
                     body: JSON.stringify(skill)
                 });
                 if (res.ok) {
-                    const status = document.getElementById('s_status');
-                    status.style.display = 'block';
+                    const message = await getApiMessage(res, 'Skill saved successfully');
+                    showStatus('s_status', message, false);
                     resetSkillForm();
                     loadSkills(); // Reload list
-                    setTimeout(() => status.style.display = 'none', 3000);
+                } else {
+                    const message = await getApiMessage(res, 'Error saving skill');
+                    showStatus('s_status', message, true);
                 }
             } catch (err) {
                 console.error(err);
-                alert('Error saving skill. Is the server running?');
+                showStatus('s_status', 'Error saving skill. Is the server running?', true);
             }
             btn.textContent = originalText;
             btn.disabled = false;

@@ -124,12 +124,26 @@ function sleep(ms) {
     return new Promise(r => setTimeout(r, ms));
 }
 
+function setCommandShortcutLabel() {
+    const shortcut = document.getElementById('cmd-shortcut');
+    const trigger = document.getElementById('cmd-trigger');
+    if (!shortcut || !trigger) return;
+
+    const platform = navigator.platform || navigator.userAgent || '';
+    const isApple = /Mac|iPhone|iPad|iPod/i.test(platform);
+    const label = isApple ? '⌘K' : 'Ctrl+K';
+
+    shortcut.textContent = label;
+    trigger.setAttribute('aria-label', `Open command palette — ${label}`);
+}
+
 // ── Initialise ────────────────────────────────────────────
 document.addEventListener('DOMContentLoaded', () => {
     // Set current year
     const yearEl = document.getElementById('year');
     if (yearEl) yearEl.textContent = new Date().getFullYear();
 
+    setCommandShortcutLabel();
     initNavbar();
     initMobileMenu();
     initScrollAnimations();
