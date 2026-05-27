@@ -1070,6 +1070,13 @@ body {
     grid-template-columns: 52px 1fr;
     gap: 24px;
     align-items: start;
+    position: relative;
+}
+
+.project-link-demo {
+    position: absolute;
+    top: 28px;
+    right: 28px;
 }
 
 .project-card:hover {

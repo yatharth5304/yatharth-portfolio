@@ -490,17 +490,18 @@ async function fetchProjects() {
                 ? p.technologies.split(',').map(t => `<span class="tech-badge">${t.trim()}</span>`).join('')
                 : '';
 
-            const linksHTML = `
+            const sourceHTML = `
                 ${p.githubLink ? `
                     <a href="${p.githubLink}" target="_blank" rel="noopener noreferrer" class="project-link">
                         ${ICONS.github} Source Code
                     </a>` : ''}
-                ${p.liveLink ? `
-                    <a href="${p.liveLink}" target="_blank" rel="noopener noreferrer" class="project-link">
-                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
-                        Live Demo
-                    </a>` : ''}
             `;
+
+            const liveDemoHTML = p.liveLink ? `
+                <a href="${p.liveLink}" target="_blank" rel="noopener noreferrer" class="project-link project-link-demo">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+                    Live Demo
+                </a>` : '';
 
             // Case-study layout when rich data exists, else standard
             const bodyHTML = details ? `
@@ -519,20 +520,20 @@ async function fetchProjects() {
                         <p class="project-field-text">${details.challenge}</p>
                     </div>
                     ${techHTML ? `<div class="project-tech">${techHTML}</div>` : ''}
-                    <div class="project-links">${linksHTML}</div>
+                    <div class="project-links">${sourceHTML}</div>
                 </div>
             ` : `
                 <div class="project-body">
                     <h3 class="project-title">${p.title}</h3>
                     ${p.description ? `<p class="project-description">${p.description}</p>` : ''}
                     ${techHTML ? `<div class="project-tech">${techHTML}</div>` : ''}
-                    <div class="project-links">${linksHTML}</div>
+                    <div class="project-links">${sourceHTML}</div>
                 </div>
             `;
 
             const card = document.createElement('div');
             card.className = `project-card fade-in-up${isFeatured ? ' featured' : ''}`;
-            card.innerHTML = `<div class="project-num" aria-hidden="true">${num}</div>${bodyHTML}`;
+            card.innerHTML = `<div class="project-num" aria-hidden="true">${num}</div>${bodyHTML}${liveDemoHTML}`;
             container.appendChild(card);
         });
 

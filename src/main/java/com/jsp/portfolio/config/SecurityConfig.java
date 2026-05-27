@@ -44,7 +44,19 @@ public class SecurityConfig {
                     if (csrfToken != null) {
                         csrfToken.getToken();
                     }
+
+                    if (isAdminRequest(request)) {
+                        response.setHeader("Cache-Control", "no-store, no-cache, must-revalidate, max-age=0");
+                        response.setHeader("Pragma", "no-cache");
+                        response.setDateHeader("Expires", 0);
+                    }
+
                     filterChain.doFilter(request, response);
+                }
+
+                private boolean isAdminRequest(HttpServletRequest request) {
+                    String requestUri = request.getRequestURI();
+                    return "/admin.html".equals(requestUri) || requestUri.startsWith("/api/admin/");
                 }
             }, CsrfFilter.class);
             
