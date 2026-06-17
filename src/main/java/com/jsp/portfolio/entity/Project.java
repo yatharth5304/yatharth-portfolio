@@ -1,5 +1,6 @@
 package com.jsp.portfolio.entity;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -33,6 +34,20 @@ public class Project {
     @Size(max = 512)
     @Pattern(regexp = "^(https?://.*)?$", message = "liveLink must be a valid HTTP/HTTPS URL")
     private String liveLink;
+	@Column(unique = true)
+    private String slug;
+
+    private String problem;
+
+    private String highlight;
+
+    private String challenge;
+
+    private boolean featured;
+
+    @Column(name = "display_order")
+    private int displayOrder;
+
 	public int getId() {
 		return id;
 	}
@@ -71,4 +86,17 @@ public class Project {
 	}
 
     // getters & setters
+	public String getSlug() { return slug; }
+	public void setSlug(String slug) { this.slug = slug; }
+	public String getProblem() { return problem; }
+	public void setProblem(String problem) { this.problem = problem; }
+	public String getHighlight() { return highlight; }
+	public void setHighlight(String highlight) { this.highlight = highlight; }
+	public String getChallenge() { return challenge; }
+	public void setChallenge(String challenge) { this.challenge = challenge; }
+	public boolean isFeatured() { return featured; }
+	public void setFeatured(boolean featured) { this.featured = featured; }
+	public int getDisplayOrder() { return displayOrder; }
+	public void setDisplayOrder(int displayOrder) { this.displayOrder = displayOrder; }
 }
+

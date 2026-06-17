@@ -17,17 +17,11 @@ public class ProjectService {
         this.repo = repo;
     }
 
-    // fetch all projects (for UI)
+    // fetch all projects ordered by display_order (DB-backed, replaces in-memory liveLink sort)
     public List<Project> getAllProjects() {
-        List<Project> projects = repo.findAll();
-        // Sort projects: those with a valid liveLink come first
-        projects.sort((a, b) -> {
-            boolean aLive = a.getLiveLink() != null && !a.getLiveLink().trim().isEmpty();
-            boolean bLive = b.getLiveLink() != null && !b.getLiveLink().trim().isEmpty();
-            return Boolean.compare(bLive, aLive);
-        });
-        return projects;
+        return repo.findAllByOrderByDisplayOrderAsc();
     }
+
 
     // save project (for admin panel)
     public void save(Project project) {

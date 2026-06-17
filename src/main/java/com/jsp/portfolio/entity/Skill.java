@@ -1,6 +1,7 @@
 package com.jsp.portfolio.entity;
 
 import jakarta.persistence.*;
+import jakarta.persistence.Column;
 import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
@@ -24,6 +25,12 @@ public class Skill {
     @NotBlank
     @Size(max = 80)
     private String category;
+
+    @Column(name = "is_primary")
+    private boolean isPrimary;
+
+    public boolean isPrimary() { return isPrimary; }
+    public void setPrimary(boolean isPrimary) { this.isPrimary = isPrimary; }
 
     public String getCategory() {
         return category;
