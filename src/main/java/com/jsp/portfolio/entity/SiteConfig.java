@@ -3,7 +3,7 @@ package com.jsp.portfolio.entity;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
-
+import jakarta.persistence.Column;
 @Entity
 @Table(name = "site_config")
 public class SiteConfig {
@@ -12,7 +12,7 @@ public class SiteConfig {
     @Id
     private String key;
 
-    @column(columnDefinition = "TEXT")
+    @Column(columnDefinition = "TEXT")
     private String value;
 
     public String getKey() { return key; }
