@@ -5,13 +5,14 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name = "site_config" , columnDefinition = "TEXT")
+@Table(name = "site_config")
 public class SiteConfig {
 
     // Key is the primary key (governed allowlist of 16 keys, see V7 migration)
     @Id
     private String key;
 
+    @column(columnDefinition = "TEXT")
     private String value;
 
     public String getKey() { return key; }
