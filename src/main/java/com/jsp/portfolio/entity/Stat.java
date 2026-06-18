@@ -13,6 +13,7 @@ public class Stat {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
+    @Column(name = "stat_value")
     private String value;
     private String label;
 

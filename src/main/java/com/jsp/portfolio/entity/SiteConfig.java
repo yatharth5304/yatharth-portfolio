@@ -10,9 +10,10 @@ public class SiteConfig {
 
     // Key is the primary key (governed allowlist of 16 keys, see V7 migration)
     @Id
+    @Column(name = "config_key")
     private String key;
 
-    @Column(columnDefinition = "TEXT")
+    @Column(name = "config_value", columnDefinition = "TEXT")
     private String value;
 
     public String getKey() { return key; }
