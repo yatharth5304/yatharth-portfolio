@@ -4,9 +4,7 @@ import java.io.IOException;
 import java.util.List;
 
 import com.jsp.portfolio.entity.Project;
-import com.jsp.portfolio.entity.Skill;
 import com.jsp.portfolio.service.ProjectService;
-import com.jsp.portfolio.service.SkillService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.http.ResponseEntity;
@@ -21,17 +19,9 @@ public class PageController {
     @Autowired
     private ProjectService projectService;
 
-    @Autowired
-    private SkillService skillService;
-
     @GetMapping("/api/projects")
     public ResponseEntity<List<Project>> getProjects() {
         return ResponseEntity.ok(projectService.getAllProjects());
-    }
-
-    @GetMapping("/api/skills")
-    public ResponseEntity<List<Skill>> getSkills() {
-        return ResponseEntity.ok(skillService.getAllSkills());
     }
 
     @GetMapping("/resume")
