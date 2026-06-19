@@ -29,14 +29,13 @@ public class Skill {
     private boolean primarySkill;
 
     @Column(name = "display_order")
-    @Min(0)
-    private int displayOrder;
+    private Integer displayOrder;
 
     public boolean isPrimarySkill() { return primarySkill; }
     public void setPrimarySkill(boolean primarySkill) { this.primarySkill = primarySkill; }
 
-    public int getDisplayOrder() { return displayOrder; }
-    public void setDisplayOrder(int displayOrder) { this.displayOrder = displayOrder; }
+    public int getDisplayOrder() { return displayOrder != null ? displayOrder : 0; }
+    public void setDisplayOrder(Integer displayOrder) { this.displayOrder = displayOrder; }
 
     public String getCategory() { return category; }
     public void setCategory(String category) { this.category = category; }
