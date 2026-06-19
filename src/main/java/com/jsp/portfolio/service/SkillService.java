@@ -16,7 +16,7 @@ public class SkillService {
     }
 
     public List<Skill> getAllSkills() {
-        return repo.findAll();
+        return repo.findAllByOrderByDisplayOrderAscIdAsc();
     }
 
     public void save(Skill skill) {

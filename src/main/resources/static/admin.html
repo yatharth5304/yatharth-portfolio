@@ -198,12 +198,13 @@
                         <tr>
                             <th>Skill Name</th>
                             <th>Category</th>
+                            <th>Order</th>
                             <th>Rating</th>
                             <th style="width: 140px;">Action</th>
                         </tr>
                     </thead>
                     <tbody id="admin-skills-list">
-                        <tr><td colspan="4" class="text-muted text-center" style="text-align: center;">Loading...</td></tr>
+                        <tr><td colspan="5" class="text-muted text-center" style="text-align: center;">Loading...</td></tr>
                     </tbody>
                 </table>
             </div>
@@ -223,6 +224,10 @@
                     <div class="form-group">
                         <label>Proficiency Rating (1-5)</label>
                         <input type="number" id="s_rating" min="1" max="5" placeholder="5">
+                    </div>
+                    <div class="form-group">
+                        <label>Display Order</label>
+                        <input type="number" id="s_displayOrder" min="0" placeholder="e.g. 12">
                     </div>
                     <button type="submit" id="s_submit_btn" class="btn btn-primary">Save Skill</button>
                     <button type="button" class="btn btn-outline" onclick="resetSkillForm()" style="margin-left: 8px;">Cancel</button>
@@ -359,7 +364,7 @@
                 const tbody = document.getElementById('admin-skills-list');
                 
                 if (allSkills.length === 0) {
-                    tbody.innerHTML = '<tr><td colspan="4" style="text-align: center; color: var(--text-muted);">No skills found.</td></tr>';
+                    tbody.innerHTML = '<tr><td colspan="5" style="text-align: center; color: var(--text-muted);">No skills found.</td></tr>';
                     return;
                 }
 
@@ -367,6 +372,7 @@
                     <tr>
                         <td style="font-weight: 500; color: var(--text-primary);">${s.name}</td>
                         <td style="color: var(--text-muted); font-size: 0.875rem;">${s.category || '-'}</td>
+                        <td style="color: var(--text-muted); font-size: 0.875rem;">${s.displayOrder ?? 0}</td>
                         <td style="color: var(--accent-blue);">${s.rating || '-'}</td>
                         <td style="display: flex;">
                             <button onclick="editSkill(${s.id})" class="btn-edit">Edit</button>
@@ -435,6 +441,7 @@
             document.getElementById('s_name').value = skill.name;
             document.getElementById('s_category').value = skill.category || '';
             document.getElementById('s_rating').value = skill.rating || '';
+            document.getElementById('s_displayOrder').value = skill.displayOrder ?? 0;
             
             document.getElementById('s_form_title').scrollIntoView({ behavior: 'smooth' });
         }
@@ -523,7 +530,8 @@
             const skill = {
                 name: document.getElementById('s_name').value,
                 category: document.getElementById('s_category').value,
-                rating: document.getElementById('s_rating').value
+                rating: document.getElementById('s_rating').value,
+                displayOrder: parseInt(document.getElementById('s_displayOrder').value || '0', 10)
             };
             
             const idVal = document.getElementById('s_id').value;

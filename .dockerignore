@@ -1,0 +1,11 @@
+.git
+.idea
+.settings
+.vscode
+target
+*.log
+hs_err_pid*
+replay_pid*
+.classpath
+.project
+HELP.md

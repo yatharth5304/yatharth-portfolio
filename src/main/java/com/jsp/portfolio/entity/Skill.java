@@ -29,8 +29,20 @@ public class Skill {
     @Column(name = "is_primary")
     private boolean isPrimary;
 
+    @Column(name = "display_order")
+    @Min(0)
+    private int displayOrder;
+
     public boolean isPrimary() { return isPrimary; }
     public void setPrimary(boolean isPrimary) { this.isPrimary = isPrimary; }
+
+    public int getDisplayOrder() {
+        return displayOrder;
+    }
+
+    public void setDisplayOrder(int displayOrder) {
+        this.displayOrder = displayOrder;
+    }
 
     public String getCategory() {
         return category;

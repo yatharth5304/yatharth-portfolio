@@ -34,8 +34,6 @@ const PRINCIPLE_ICONS = {
     shield: `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" /></svg>`,
 };
 
-const SKILL_CATEGORY_ORDER = ['Backend', 'Database', 'Frontend', 'Tools & DevOps', 'Concepts'];
-
 function scrollTo(selector) {
     const element = document.querySelector(selector);
     if (element) {
@@ -608,23 +606,13 @@ function renderSkills(skills) {
         groupedSkills.get(category).push(skill);
     });
 
-    const orderedCategories = [...groupedSkills.keys()].sort((left, right) => {
-        const leftIndex = SKILL_CATEGORY_ORDER.indexOf(left);
-        const rightIndex = SKILL_CATEGORY_ORDER.indexOf(right);
-        const safeLeft = leftIndex === -1 ? Number.MAX_SAFE_INTEGER : leftIndex;
-        const safeRight = rightIndex === -1 ? Number.MAX_SAFE_INTEGER : rightIndex;
-        return safeLeft - safeRight || left.localeCompare(right);
-    });
-
     container.innerHTML = '';
 
-    orderedCategories.forEach(category => {
-        const categorySkills = groupedSkills.get(category)
-            .slice()
-            .sort((left, right) => right.rating - left.rating || left.name.localeCompare(right.name));
+    groupedSkills.forEach((categorySkills, category) => {
+        const orderedSkills = categorySkills.slice();
 
-        const isPrimary = categorySkills.some(skill => skill.primary || skill.isPrimary);
-        const chipsHtml = categorySkills
+        const isPrimary = orderedSkills.some(skill => skill.primary || skill.isPrimary);
+        const chipsHtml = orderedSkills
             .map(skill => `<span class="skill-chip${isPrimary ? ' primary' : ''}">${escapeHtml(skill.name)}</span>`)
             .join('');
 
