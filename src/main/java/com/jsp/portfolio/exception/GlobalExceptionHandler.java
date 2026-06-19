@@ -39,6 +39,14 @@ public class GlobalExceptionHandler {
         return build(HttpStatus.BAD_REQUEST, "Invalid request parameters", null);
     }
 
+    // TEMPORARY: catch-all to expose the real error for debugging
+    @ExceptionHandler(Exception.class)
+    public ResponseEntity<Map<String, Object>> handleAll(Exception ex) {
+        String detail = ex.getClass().getName() + ": " + ex.getMessage();
+        if (ex.getCause() != null) detail += " | Caused by: " + ex.getCause().getMessage();
+        return build(HttpStatus.INTERNAL_SERVER_ERROR, detail, null);
+    }
+
     @ExceptionHandler(HttpMessageNotReadableException.class)
     public ResponseEntity<Map<String, Object>> handleMalformedBody(HttpMessageNotReadableException ex) {
         return build(HttpStatus.BAD_REQUEST, "Malformed request body", null);
