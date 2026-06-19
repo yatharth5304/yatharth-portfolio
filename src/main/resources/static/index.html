@@ -56,7 +56,7 @@
         <div class="nav-container">
             <a href="#" class="nav-brand" aria-label="Yatharth Maharwade — Home">
                 <span class="brand-initials" aria-hidden="true">YM</span>
-                <span class="brand-name"><h1>Yatharth</h1></span>
+                <span class="brand-name"><h1 id="brand-name-text">Yatharth</h1></span>
             </a>
 
             <ul class="nav-links" role="list">
@@ -108,28 +108,26 @@
                 <div class="hero-content fade-in-up">
                     <div class="hero-badge">
                         <span class="status-dot" aria-hidden="true"></span>
-                        Available for Backend Engineering roles
+                        <span id="hero-availability-text">Available for Backend Engineering roles</span>
                     </div>
                     <h1 class="hero-title">
-                        Building backend systems<br>
-                        <span class="text-gradient">that hold under pressure.</span>
+                        <span id="hero-title-line1">Building backend systems</span><br>
+                        <span class="text-gradient" id="hero-title-line2">that hold under pressure.</span>
                     </h1>
-                    <p class="hero-description">
-                        I'm <strong>Yatharth Maharwade</strong> — a Backend Engineer specializing in Java, Spring Boot,
+                    <p class="hero-description" id="hero-description">I'm Yatharth Maharwade — a Backend Engineer specializing in Java, Spring Boot,
                         and PostgreSQL. I focus on clean API design, solid data layers, and services that
-                        perform when it matters.
-                    </p>
+                        perform when it matters.</p>
                     <div class="hero-actions">
                         <a href="#projects" class="btn btn-primary">View Projects</a>
                         <a href="/resume" class="btn btn-outline" target="_blank" rel="noopener noreferrer">Resume
                             ↗</a>
                     </div>
                     <div class="hero-meta" aria-label="Quick facts">
-                        <span class="hero-meta-item">Pune, India</span>
+                        <span class="hero-meta-item" id="hero-location">Pune, India</span>
                         <span class="hero-meta-dot" aria-hidden="true">·</span>
-                        <span class="hero-meta-item">B.Tech CSE · 2025</span>
+                        <span class="hero-meta-item" id="hero-education">B.Tech CSE · 2025</span>
                         <span class="hero-meta-dot" aria-hidden="true">·</span>
-                        <span class="hero-meta-item">Java · Spring Boot · PostgreSQL</span>
+                        <span class="hero-meta-item" id="hero-stack">Java · Spring Boot · PostgreSQL</span>
                     </div>
                 </div>
 
@@ -155,15 +153,15 @@
                 <div class="about-layout">
                     <div class="about-text fade-in-up">
                         <span class="section-label">About me</span>
-                        <h2 class="about-heading">I care about how software actually works.</h2>
-                        <p class="about-p">B.Tech CSE graduate from Nagpur who spent a year in intensive Java training
+                        <h2 class="about-heading" id="about-heading">I care about how software actually works.</h2>
+                        <p class="about-p" id="about-para-1">B.Tech CSE graduate from Nagpur who spent a year in intensive Java training
                             at QSpiders, contributed to R&amp;D at Bliinc, and now builds backend services at Vintyaa
                             Technologies in Pune. I'm drawn to backend problems — API design, data modeling, query
                             performance, and system reliability.</p>
-                        <p class="about-p">My approach: understand the problem first, design before coding, and ship
+                        <p class="about-p" id="about-para-2">My approach: understand the problem first, design before coding, and ship
                             something that works — not just something that demos well.</p>
                     </div>
-                    <div class="about-stats fade-in-up" style="--delay: 0.1s" aria-label="Quick stats">
+                    <div id="about-stats-container" class="about-stats fade-in-up" style="--delay: 0.1s" aria-label="Quick stats">
                         <div class="stat-card">
                             <span class="stat-number">7+</span>
                             <span class="stat-label">Projects shipped</span>
@@ -193,7 +191,7 @@
                     <h2 class="section-title">Experience</h2>
                 </div>
 
-                <div class="timeline">
+                <div id="experience-timeline" class="timeline">
                     <!-- Vintyaa -->
                     <div class="timeline-item fade-in-up">
                         <div class="timeline-marker current" aria-label="Current role"></div>
@@ -342,7 +340,7 @@
                         <h2 class="section-title">How I approach engineering</h2>
                         <p class="section-subtitle">Specific principles I actually follow — not generic platitudes.</p>
                     </div>
-                    <div class="principles-grid">
+                    <div id="principles-grid" class="principles-grid">
                         <div class="principle-card fade-in-up">
                             <div class="principle-icon" aria-hidden="true">
                                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
@@ -411,16 +409,16 @@
                             interesting technical collaborations. I reply to every message.</p>
                     </div>
                     <div class="contact-links">
-                        <a href="mailto:yatharth0503@hotmail.com" class="contact-link-primary">
+                        <a id="contact-email-link" href="mailto:yatharth0503@hotmail.com" class="contact-link-primary">
                             <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor"
                                 stroke-width="2" aria-hidden="true">
                                 <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
                                 <polyline points="22,6 12,13 2,6" />
                             </svg>
-                            yatharth0503@hotmail.com
+                            <span id="contact-email-text">yatharth0503@hotmail.com</span>
                         </a>
                         <div class="contact-secondary-links">
-                            <a href="https://www.linkedin.com/in/yatharthmaharwade/" target="_blank"
+                            <a id="contact-linkedin-link" href="https://www.linkedin.com/in/yatharthmaharwade/" target="_blank"
                                 rel="noopener noreferrer" class="contact-link-sm">
                                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
                                     stroke-width="2" aria-hidden="true">
@@ -431,7 +429,7 @@
                                 </svg>
                                 LinkedIn
                             </a>
-                            <a href="https://github.com/yatharth5304" target="_blank" rel="noopener noreferrer"
+                            <a id="contact-github-link" href="https://github.com/yatharth5304" target="_blank" rel="noopener noreferrer"
                                 class="contact-link-sm">
                                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
                                     stroke-width="2" aria-hidden="true">
@@ -459,10 +457,10 @@
         <div class="container footer-content">
             <div class="footer-brand">
                 <span class="brand-initials sm" aria-hidden="true">YM</span>
-                Yatharth Maharwade
+                <span id="footer-full-name">Yatharth Maharwade</span>
             </div>
             <div class="footer-copy">
-                &copy; <span id="year"></span> &nbsp;·&nbsp; Built with Spring Boot &amp; PostgreSQL
+                &copy; <span id="year"></span> &nbsp;·&nbsp; <span id="footer-tech-text">Built with Spring Boot &amp; PostgreSQL</span>
             </div>
             <div class="footer-status">
                 <span class="status-dot" aria-hidden="true"></span>
