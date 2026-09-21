@@ -544,20 +544,22 @@ function renderProjects(projects) {
             ? `
                 <div class="project-body">
                     <h3 class="project-title">${escapeHtml(project.title)}</h3>
-                    <div class="project-field">
-                        <div class="project-field-label">Problem</div>
-                        <p class="project-field-text">${escapeHtml(project.problem)}</p>
+                    <div class="project-fields-grid">
+                        <div class="project-field">
+                            <span class="project-field-label">Problem</span>
+                            <p class="project-field-text">${escapeHtml(project.problem)}</p>
+                        </div>
+                        <div class="project-field">
+                            <span class="project-field-label">Built</span>
+                            <p class="project-field-text">${escapeHtml(project.highlight)}</p>
+                        </div>
                     </div>
-                    <div class="project-field">
-                        <div class="project-field-label">What I built</div>
-                        <p class="project-field-text">${escapeHtml(project.highlight)}</p>
-                    </div>
-                    <div class="project-field">
-                        <div class="project-field-label">Key challenge</div>
-                        <p class="project-field-text">${escapeHtml(project.challenge)}</p>
+                    <div class="project-challenge">
+                        <span class="project-challenge-label">Challenge</span>
+                        <p class="project-challenge-text">${escapeHtml(project.challenge)}</p>
                     </div>
                     ${techHtml ? `<div class="project-tech">${techHtml}</div>` : ''}
-                    <div class="project-links">${sourceHtml}</div>
+                    <div class="project-links">${sourceHtml}${liveDemoHtml}</div>
                 </div>
             `
             : `
@@ -565,13 +567,13 @@ function renderProjects(projects) {
                     <h3 class="project-title">${escapeHtml(project.title)}</h3>
                     ${project.description ? `<p class="project-description">${escapeHtml(project.description)}</p>` : ''}
                     ${techHtml ? `<div class="project-tech">${techHtml}</div>` : ''}
-                    <div class="project-links">${sourceHtml}</div>
+                    <div class="project-links">${sourceHtml}${liveDemoHtml}</div>
                 </div>
             `;
 
         const card = document.createElement('div');
         card.className = `project-card fade-in-up${project.featured ? ' featured' : ''}`;
-        card.innerHTML = `<div class="project-num" aria-hidden="true">${String(index + 1).padStart(2, '0')}</div>${bodyHtml}${liveDemoHtml}`;
+        card.innerHTML = `<div class="project-num" aria-hidden="true">${String(index + 1).padStart(2, '0')}</div>${bodyHtml}`;
         container.appendChild(card);
     });
 
@@ -666,20 +668,25 @@ function renderExperiences(experiences) {
         .slice()
         .sort((left, right) => (left.displayOrder ?? 0) - (right.displayOrder ?? 0));
 
+    // Editorial ledger: date column | role/company/description column
     container.innerHTML = orderedExperiences.map(experience => `
         <div class="timeline-item fade-in-up">
             <div class="timeline-marker${experience.current || experience.isCurrent ? ' current' : ''}"${experience.current || experience.isCurrent ? ' aria-label="Current role"' : ''}></div>
             <div class="timeline-content">
-                <div class="timeline-header">
-                    <div>
-                        <h3 class="role">${escapeHtml(experience.role)}</h3>
-                        <h4 class="company">${escapeHtml(experience.company)}${experience.location ? ` <span class="company-loc">· ${escapeHtml(experience.location)}</span>` : ''}</h4>
-                    </div>
+                <div class="timeline-date-col">
                     <span class="date">${escapeHtml(experience.displayLabel || '')}</span>
                 </div>
-                ${experience.description ? `<p class="description">${escapeHtml(experience.description)}</p>` : ''}
-                <div class="role-tags" aria-label="Technologies used">
-                    ${splitTags(experience.tags).map(tag => `<span class="role-tag">${escapeHtml(tag)}</span>`).join('')}
+                <div class="timeline-main-col">
+                    <div class="timeline-header">
+                        <div>
+                            <h3 class="role">${escapeHtml(experience.role)}</h3>
+                            <h4 class="company">${escapeHtml(experience.company)}${experience.location ? ` <span class="company-loc">· ${escapeHtml(experience.location)}</span>` : ''}</h4>
+                        </div>
+                    </div>
+                    ${experience.description ? `<p class="description">${escapeHtml(experience.description)}</p>` : ''}
+                    <div class="role-tags" aria-label="Technologies used">
+                        ${splitTags(experience.tags).map(tag => `<span class="role-tag">${escapeHtml(tag)}</span>`).join('')}
+                    </div>
                 </div>
             </div>
         </div>
@@ -703,7 +710,8 @@ function renderPrinciples(principles) {
         .slice()
         .sort((left, right) => (left.displayOrder ?? 0) - (right.displayOrder ?? 0));
 
-    container.innerHTML = orderedPrinciples.map(principle => `
+    // Editorial: numbered theses, no icon boxes
+    container.innerHTML = orderedPrinciples.map((principle, index) => `
         <div class="principle-card fade-in-up">
             <div class="principle-icon" aria-hidden="true">
                 ${PRINCIPLE_ICONS[principle.iconKey] || PRINCIPLE_ICONS.file}

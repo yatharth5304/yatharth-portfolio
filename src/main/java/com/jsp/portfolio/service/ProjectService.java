@@ -23,11 +23,38 @@ public class ProjectService {
     }
 
 
-    // save project (for admin panel)
+// save project (for admin panel) - supports both create and partial update
     public void save(Project project) {
         project.setGithubLink(normalizeUrl(project.getGithubLink()));
         project.setLiveLink(normalizeUrl(project.getLiveLink()));
-        repo.save(project);
+
+        if (project.getId() != 0) {
+            Project existing = repo.findById(project.getId())
+                    .orElseThrow(() -> new ResourceNotFoundException("Project not found for id=" + project.getId()));
+            mergeProjectFields(existing, project);
+            repo.save(existing);
+        } else {
+            repo.save(project);
+        }
+    }
+
+    private void mergeProjectFields(Project existing, Project incoming) {
+        if (incoming.getTitle() != null) {
+            existing.setTitle(incoming.getTitle());
+        }
+        if (incoming.getDescription() != null) {
+            existing.setDescription(incoming.getDescription());
+        }
+        if (incoming.getTechnologies() != null) {
+            existing.setTechnologies(incoming.getTechnologies());
+        }
+        if (incoming.getGithubLink() != null) {
+            existing.setGithubLink(incoming.getGithubLink());
+        }
+        if (incoming.getLiveLink() != null) {
+            existing.setLiveLink(incoming.getLiveLink());
+        }
+        // slug, problem, highlight, challenge, featured, displayOrder are preserved from existing
     }
 
     // delete project (future use)

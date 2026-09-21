@@ -34,7 +34,7 @@ public class Skill {
     public boolean isPrimarySkill() { return primarySkill; }
     public void setPrimarySkill(boolean primarySkill) { this.primarySkill = primarySkill; }
 
-    public int getDisplayOrder() { return displayOrder != null ? displayOrder : 0; }
+    public Integer getDisplayOrder() { return displayOrder; }
     public void setDisplayOrder(Integer displayOrder) { this.displayOrder = displayOrder; }
 
     public String getCategory() { return category; }
