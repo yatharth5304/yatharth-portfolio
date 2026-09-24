@@ -5,4 +5,11 @@
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
+  <url><loc>https://yatharthm.is-a.dev/projects/developer-portfolio.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://yatharthm.is-a.dev/projects/foodfinder.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://yatharthm.is-a.dev/projects/omdb-movie-explorer.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://yatharthm.is-a.dev/projects/student-attendance-management-system.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://yatharthm.is-a.dev/projects/realtime-face-tracking-gimbal.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://yatharthm.is-a.dev/projects/music-webapp.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://yatharthm.is-a.dev/projects/quiz-web-app.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
 </urlset>
