@@ -6,27 +6,23 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>Yatharth Maharwade | Java Backend Engineer Portfolio</title>
-    <meta name="description"
-        content="Yatharth Maharwade's portfolio: Java Backend Engineer in Pune, India specializing in Spring Boot, PostgreSQL, REST APIs, backend systems, and software engineering.">
+    <meta name="description" content="Yatharth Maharwade's portfolio: Java Backend Engineer in Pune, India specializing in Spring Boot, PostgreSQL, REST APIs, backend systems, and software engineering.">
     <meta name="author" content="Yatharth Maharwade">
     <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
     <meta name="theme-color" content="#0b0b0b">
-
     <link rel="canonical" href="https://yatharthm.is-a.dev/">
 
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://yatharthm.is-a.dev/">
     <meta property="og:title" content="Yatharth Maharwade | Java Backend Engineer">
-    <meta property="og:description"
-        content="Portfolio of Yatharth Maharwade — Java Backend Engineer specializing in Spring Boot, PostgreSQL, REST APIs, and reliable backend systems.">
+    <meta property="og:description" content="Portfolio of Yatharth Maharwade — Java Backend Engineer specializing in Spring Boot, PostgreSQL, REST APIs, and reliable backend systems.">
     <meta property="og:site_name" content="Yatharth Maharwade">
 
     <meta name="twitter:card" content="summary">
     <meta name="twitter:title" content="Yatharth Maharwade | Java Backend Engineer">
-    <meta name="twitter:description"
-        content="Portfolio of Yatharth Maharwade — Java Backend Engineer specializing in Spring Boot, PostgreSQL, REST APIs, and reliable backend systems.">
+    <meta name="twitter:description" content="Portfolio of Yatharth Maharwade — Java Backend Engineer specializing in Spring Boot, PostgreSQL, REST APIs, and reliable backend systems.">
 
-    <meta name="google-site-verification" content="2qsonrh9rKY4bpdHU2ucRIHXVZ6hP1A18U9qcK9Skp8" />
+    <meta name="google-site-verification" content="2qsonrh9rKY4bpdHU2ucRIHXVZ6hP1A18U9qcK9Skp8">
 
     <script type="application/ld+json">
     {
@@ -46,28 +42,10 @@
         "https://www.linkedin.com/in/yatharthmaharwade/"
       ],
       "knowsAbout": [
-        "Java",
-        "Spring Boot",
-        "Spring MVC",
-        "Spring Security",
-        "Hibernate",
-        "JPA",
-        "REST APIs",
-        "PostgreSQL",
-        "SQL",
-        "Database Design",
-        "Query Optimization",
-        "Git",
-        "GitHub",
-        "Maven",
-        "Docker",
-        "JavaScript",
-        "HTML5",
-        "CSS3",
-        "RBAC",
-        "Object-Oriented Programming",
-        "Data Structures",
-        "Algorithms"
+        "Java", "Spring Boot", "Spring MVC", "Spring Security", "Hibernate", "JPA",
+        "REST APIs", "PostgreSQL", "SQL", "Database Design", "Query Optimization",
+        "Git", "GitHub", "Maven", "Docker", "JavaScript", "HTML5", "CSS3",
+        "RBAC", "Object-Oriented Programming", "Data Structures", "Algorithms"
       ]
     }
     </script>
@@ -94,3 +72,509 @@
     <link rel="stylesheet" href="/css/style.css">
     <link rel="icon" type="image/svg+xml" href="/favicon.svg">
 </head>
+
+<body>
+
+    <!-- Editorial grid overlay (structural, decorative only) -->
+    <div class="editorial-grid-overlay" aria-hidden="true">
+        <div class="editorial-grid-inner">
+            <div class="editorial-grid-col"></div>
+            <div class="editorial-grid-col"></div>
+            <div class="editorial-grid-col"></div>
+            <div class="editorial-grid-col"></div>
+            <div class="editorial-grid-col"></div>
+            <div class="editorial-grid-col"></div>
+            <div class="editorial-grid-col"></div>
+            <div class="editorial-grid-col"></div>
+            <div class="editorial-grid-col"></div>
+            <div class="editorial-grid-col"></div>
+            <div class="editorial-grid-col"></div>
+            <div class="editorial-grid-col"></div>
+        </div>
+    </div>
+
+    <!-- ── Command Palette ─────────────────────────────── -->
+    <div id="cmd-palette" class="cmd-overlay" aria-hidden="true" role="dialog" aria-modal="true"
+        aria-label="Command palette">
+        <div class="cmd-backdrop" id="cmd-backdrop"></div>
+        <div class="cmd-modal">
+            <div class="cmd-input-row">
+                <svg class="cmd-search-icon" width="16" height="16" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2" aria-hidden="true">
+                    <circle cx="11" cy="11" r="8" />
+                    <path d="m21 21-4.35-4.35" />
+                </svg>
+                <input type="text" id="cmd-input" class="cmd-input" placeholder="Search or type a command…"
+                    autocomplete="off" spellcheck="false" aria-label="Command search">
+                <kbd class="cmd-esc-key">ESC</kbd>
+            </div>
+            <div id="cmd-results" class="cmd-results" role="listbox" aria-label="Command results"></div>
+            <div class="cmd-footer" aria-hidden="true">
+                <span><kbd>↑</kbd><kbd>↓</kbd> navigate</span>
+                <span><kbd>↵</kbd> select</span>
+                <span><kbd>ESC</kbd> close</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Reading Progress -->
+    <div id="reading-progress" aria-hidden="true"></div>
+
+    <!-- ── Navigation ──────────────────────────────────── -->
+    <nav class="navbar" id="navbar" role="navigation" aria-label="Main navigation">
+        <div class="nav-container">
+            <a href="#" class="nav-brand" aria-label="Yatharth Maharwade — Home">
+                <span class="brand-initials" aria-hidden="true">YM</span>
+                <span class="brand-name"><h1 id="brand-name-text">Yatharth</h1></span>
+            </a>
+
+            <ul class="nav-links" role="list">
+                <li><a href="#about" class="nav-link" data-section="about">About</a></li>
+                <li><a href="#experience" class="nav-link" data-section="experience">Experience</a></li>
+                <li><a href="#projects" class="nav-link" data-section="projects">Projects</a></li>
+                <li><a href="#skills" class="nav-link" data-section="skills">Stack</a></li>
+            </ul>
+
+            <div class="nav-actions">
+                <button class="cmd-trigger" id="cmd-trigger" aria-label="Open command palette — Ctrl/Cmd + K">
+                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                        aria-hidden="true">
+                        <circle cx="11" cy="11" r="8" />
+                        <path d="m21 21-4.35-4.35" />
+                    </svg>
+                    <span>Search</span>
+                    <kbd id="cmd-shortcut" aria-hidden="true">Ctrl/Cmd + K</kbd>
+                </button>
+                <a href="/resume" class="btn btn-sm btn-outline nav-cta" target="_blank"
+                    rel="noopener noreferrer">Resume ↗</a>
+            </div>
+
+            <button class="mobile-toggle" id="mobile-toggle" aria-label="Toggle navigation" aria-expanded="false">
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
+            </button>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div class="mobile-menu" id="mobile-menu" aria-hidden="true">
+            <ul role="list">
+                <li><a href="#about" class="mobile-link">About</a></li>
+                <li><a href="#experience" class="mobile-link">Experience</a></li>
+                <li><a href="#projects" class="mobile-link">Projects</a></li>
+                <li><a href="#skills" class="mobile-link">Stack</a></li>
+                <li><a href="/resume" class="mobile-link" target="_blank" rel="noopener noreferrer">Resume ↗</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <main>
+        <!-- ── Hero / Front Page ─────────────────────────── -->
+        <section id="hero" class="hero section">
+            <div class="hero-grid-texture" aria-hidden="true"></div>
+            <div class="container">
+
+                <!-- Masthead — spans both columns -->
+                <div class="masthead-block fade-in-up">
+                    <span class="masthead-name">Yatharth Maharwade</span>
+                    <span class="masthead-dateline">Pune, India · Backend Systems · Vol. 2026</span>
+                </div>
+
+                <!-- Left: editorial hero content -->
+                <div class="hero-content fade-in-up" style="--delay:0.05s">
+                    <div class="hero-badge">
+                        <span class="status-dot" aria-hidden="true"></span>
+                        <span id="hero-availability-text">Available for Backend Engineering roles</span>
+                    </div>
+                    <h2 class="hero-title">
+                        <span id="hero-title-line1">Building backend systems</span><br>
+                        <span class="text-gradient" id="hero-title-line2">that hold under pressure.</span>
+                    </h2>
+                    <p class="hero-description" id="hero-description">I'm Yatharth Maharwade, a Backend Engineer specializing in Java, Spring Boot,
+                        and PostgreSQL. I focus on clean API design, solid data layers, and services that
+                        perform when it matters.</p>
+                    <div class="hero-actions">
+                        <a href="#projects" class="btn btn-primary">View Projects</a>
+                        <a href="/resume" class="btn btn-outline" target="_blank" rel="noopener noreferrer">Resume ↗</a>
+                    </div>
+                    <div class="hero-meta" aria-label="Quick facts">
+                        <span class="hero-meta-item" id="hero-location">Pune, India</span>
+                        <span class="hero-meta-dot" aria-hidden="true">·</span>
+                        <span class="hero-meta-item" id="hero-education">B.Tech CSE · 2025</span>
+                        <span class="hero-meta-dot" aria-hidden="true">·</span>
+                        <span class="hero-meta-item" id="hero-stack">Java · Spring Boot · PostgreSQL</span>
+                    </div>
+                </div>
+
+                <!-- Right: terminal -->
+                <div class="hero-visual fade-in-up" style="--delay: 0.15s">
+                    <div class="terminal" role="region" aria-label="Terminal preview">
+                        <div class="terminal-header">
+                            <div class="terminal-dots" aria-hidden="true">
+                                <span></span><span></span><span></span>
+                            </div>
+                            <div class="terminal-title">yatharth ~ portfolio</div>
+                        </div>
+                        <div class="terminal-body font-mono" id="terminal-body" aria-live="polite">
+                            <!-- Typed by JS -->
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- ── About ─────────────────────────────────────── -->
+        <section id="about" class="section about-section bg-secondary">
+            <div class="container">
+                <div class="bs-section-header fade-in-up">
+                    <span class="bs-section-kicker">Profile</span>
+                    <div>
+                        <div class="bs-section-title">About</div>
+                    </div>
+                </div>
+                <div class="about-layout">
+                    <div class="about-text fade-in-up">
+                        <h2 class="about-heading" id="about-heading">I care about how software actually works.</h2>
+                        <p class="about-p" id="about-para-1">B.Tech CSE graduate from Nagpur who spent a year in intensive Java training
+                            at QSpiders, contributed to R&amp;D at Bliinc, and now builds backend services at Vintyaa
+                            Technologies in Pune. I'm drawn to backend problems, API design, data modeling, query
+                            performance, and system reliability.</p>
+                        <p class="about-p" id="about-para-2">My approach: understand the problem first, design before coding, and ship
+                            something that works — not just something that demos well.</p>
+                    </div>
+                    <div id="about-stats-container" class="about-stats fade-in-up" style="--delay: 0.1s" aria-label="Quick stats">
+                        <div class="stat-card">
+                            <span class="stat-number">7+</span>
+                            <span class="stat-label">Projects shipped</span>
+                        </div>
+                        <div class="stat-card">
+                            <span class="stat-number">4</span>
+                            <span class="stat-label">Roles &amp; internships</span>
+                        </div>
+                        <div class="stat-card">
+                            <span class="stat-number">2+</span>
+                            <span class="stat-label">Years on Java</span>
+                        </div>
+                        <div class="stat-card">
+                            <span class="stat-number">5</span>
+                            <span class="stat-label">Certifications</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ── Experience ────────────────────────────────── -->
+        <section id="experience" class="section">
+            <div class="container">
+                <div class="bs-section-header fade-in-up">
+                    <span class="bs-section-kicker">Career</span>
+                    <div>
+                        <div class="bs-section-title">Experience</div>
+                    </div>
+                </div>
+
+                <div id="experience-timeline" class="timeline">
+                    <!-- Vintyaa -->
+                    <div class="timeline-item fade-in-up">
+                        <div class="timeline-marker current" aria-label="Current role"></div>
+                        <div class="timeline-content">
+                            <div class="timeline-date-col">
+                                <span class="date">Apr 2026 – Present</span>
+                            </div>
+                            <div class="timeline-main-col">
+                                <div class="timeline-header">
+                                    <div>
+                                        <h3 class="role">Software Engineer</h3>
+                                        <h4 class="company">Vintyaa Technologies Pvt Ltd <span class="company-loc">·
+                                                Pune</span></h4>
+                                    </div>
+                                </div>
+                                <p class="description">Architecting and building backend services using Java and Spring
+                                    Boot. Designing RESTful APIs, optimizing PostgreSQL queries, and maintaining service
+                                    reliability in production.</p>
+                                <div class="role-tags" aria-label="Technologies used">
+                                    <span class="role-tag">Java</span>
+                                    <span class="role-tag">Spring Boot</span>
+                                    <span class="role-tag">PostgreSQL</span>
+                                    <span class="role-tag">REST APIs</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- QSpiders -->
+                    <div class="timeline-item fade-in-up">
+                        <div class="timeline-marker"></div>
+                        <div class="timeline-content">
+                            <div class="timeline-date-col">
+                                <span class="date">Feb 2025 – Jan 2026</span>
+                            </div>
+                            <div class="timeline-main-col">
+                                <div class="timeline-header">
+                                    <div>
+                                        <h3 class="role">Student Intern</h3>
+                                        <h4 class="company">QSpiders Training &amp; Development <span class="company-loc">·
+                                                Pune</span></h4>
+                                    </div>
+                                </div>
+                                <p class="description">Intensive full-stack Java development training. Covered advanced Java
+                                    concepts, Spring Framework, Hibernate/JPA, and SQL. Built multiple projects from scratch
+                                    under mentorship.</p>
+                                <div class="role-tags" aria-label="Technologies used">
+                                    <span class="role-tag">Java</span>
+                                    <span class="role-tag">Spring Framework</span>
+                                    <span class="role-tag">Hibernate / JPA</span>
+                                    <span class="role-tag">SQL</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Bliinc -->
+                    <div class="timeline-item fade-in-up">
+                        <div class="timeline-marker"></div>
+                        <div class="timeline-content">
+                            <div class="timeline-date-col">
+                                <span class="date">Dec 2024 – Apr 2025</span>
+                            </div>
+                            <div class="timeline-main-col">
+                                <div class="timeline-header">
+                                    <div>
+                                        <h3 class="role">R&amp;D Intern</h3>
+                                        <h4 class="company">Bliinc <span class="company-loc">· Nagpur</span></h4>
+                                    </div>
+                                </div>
+                                <p class="description">Contributed to R&amp;D initiatives exploring new technology
+                                    solutions. Implemented proof-of-concept features, conducted feasibility studies, and
+                                    collaborated on product innovation.</p>
+                                <div class="role-tags" aria-label="Focus areas">
+                                    <span class="role-tag">R&amp;D</span>
+                                    <span class="role-tag">Prototyping</span>
+                                    <span class="role-tag">Product Innovation</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- ── Projects ──────────────────────────────────── -->
+        <section id="projects" class="section bg-secondary">
+            <div class="container">
+                <div class="bs-section-header fade-in-up">
+                    <span class="bs-section-kicker">Work</span>
+                    <div>
+                        <div class="bs-section-title">Selected Projects</div>
+                        <p class="bs-section-subtitle">Engineering solutions with real problems behind them.</p>
+                    </div>
+                </div>
+
+                <div id="projects-container" class="projects-list">
+                    <!-- Skeleton loaders -->
+                    <div class="project-skeleton fade-in-up">
+                        <div class="skeleton sk-number"></div>
+                        <div class="skel-body">
+                            <div class="skeleton sk-title"></div>
+                            <div class="skeleton sk-label"></div>
+                            <div class="skeleton sk-text"></div>
+                            <div class="skeleton sk-text sk-w70"></div>
+                            <div class="sk-tags">
+                                <div class="skeleton sk-tag"></div>
+                                <div class="skeleton sk-tag"></div>
+                                <div class="skeleton sk-tag sk-tag-lg"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="project-skeleton fade-in-up">
+                        <div class="skeleton sk-number"></div>
+                        <div class="skel-body">
+                            <div class="skeleton sk-title sk-w80"></div>
+                            <div class="skeleton sk-label"></div>
+                            <div class="skeleton sk-text"></div>
+                            <div class="skeleton sk-text sk-w60"></div>
+                            <div class="sk-tags">
+                                <div class="skeleton sk-tag"></div>
+                                <div class="skeleton sk-tag"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ── Tech Stack ─────────────────────────────────── -->
+        <section id="skills" class="section">
+            <div class="container">
+                <div class="bs-section-header fade-in-up">
+                    <span class="bs-section-kicker">Technical</span>
+                    <div>
+                        <div class="bs-section-title">Stack &amp; Tools</div>
+                        <p class="bs-section-subtitle">What I reach for when building production software.</p>
+                    </div>
+                </div>
+                <div id="skills-container" class="skills-container">
+                    <!-- Rendered by JS -->
+                    <div class="skill-group-sk">
+                        <div class="skeleton" style="width: 80px; height: 12px; margin-bottom: 16px;"></div>
+                        <div class="skill-chips-sk">
+                            <div class="skeleton" style="width: 100%; height: 14px;"></div>
+                            <div class="skeleton" style="width: 80%; height: 14px;"></div>
+                            <div class="skeleton" style="width: 90%; height: 14px;"></div>
+                            <div class="skeleton" style="width: 70%; height: 14px;"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ── Engineering Principles ────────────────────── -->
+        <section class="section principles-section bg-secondary">
+            <div class="container">
+                <div class="principles-layout">
+                    <div class="principles-header fade-in-up">
+                        <div class="bs-section-header" style="margin-bottom:0; border-bottom:none; padding-bottom:0;">
+                            <span class="bs-section-kicker">Thinking</span>
+                            <div>
+                                <div class="bs-section-title">How I approach engineering</div>
+                                <p class="bs-section-subtitle">Specific principles I actually follow — not generic platitudes.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="principles-grid" class="principles-grid">
+                        <div class="principle-card fade-in-up">
+                            <div class="principle-icon" aria-hidden="true">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="1.75">
+                                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
+                                    <polyline points="14 2 14 8 20 8" />
+                                    <line x1="16" y1="13" x2="8" y2="13" />
+                                    <line x1="16" y1="17" x2="8" y2="17" />
+                                    <polyline points="10 9 9 9 8 9" />
+                                </svg>
+                            </div>
+                            <h4 class="principle-title">Design before code</h4>
+                            <p class="principle-desc">I map the data model and API contract before writing the first
+                                line. Rushing to code means more time debugging the wrong solution.</p>
+                        </div>
+                        <div class="principle-card fade-in-up">
+                            <div class="principle-icon" aria-hidden="true">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="1.75">
+                                    <circle cx="12" cy="12" r="10" />
+                                    <polyline points="12 6 12 12 16 14" />
+                                </svg>
+                            </div>
+                            <h4 class="principle-title">Query performance is not optional</h4>
+                            <p class="principle-desc">I check execution plans, avoid N+1 problems, and add indexes
+                                deliberately — not as an afterthought when production slows down.</p>
+                        </div>
+                        <div class="principle-card fade-in-up">
+                            <div class="principle-icon" aria-hidden="true">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="1.75">
+                                    <rect x="3" y="3" width="7" height="7" rx="1" />
+                                    <rect x="14" y="3" width="7" height="7" rx="1" />
+                                    <rect x="3" y="14" width="7" height="7" rx="1" />
+                                    <rect x="14" y="14" width="7" height="7" rx="1" />
+                                </svg>
+                            </div>
+                            <h4 class="principle-title">APIs are contracts, not implementation details</h4>
+                            <p class="principle-desc">Consumers shouldn't need to know how data is stored or processed.
+                                The API surface matters more than what's behind it.</p>
+                        </div>
+                        <div class="principle-card fade-in-up">
+                            <div class="principle-icon" aria-hidden="true">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="1.75">
+                                    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+                                </svg>
+                            </div>
+                            <h4 class="principle-title">Readable code ages better</h4>
+                            <p class="principle-desc">Clever code is a liability. I name things clearly, keep methods
+                                small, and leave the codebase in a state I'd want to find it six months later.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ── Contact ────────────────────────────────────── -->
+        <section id="contact" class="section">
+            <div class="container">
+                <div class="contact-card fade-in-up">
+                    <div class="contact-text">
+                        <span class="section-label">Correspondence</span>
+                        <h2 class="contact-heading">Let's talk engineering.</h2>
+                        <p class="contact-desc">Open to backend engineering roles, internship opportunities, and
+                            interesting technical collaborations. I reply to every message.</p>
+                    </div>
+                    <div class="contact-links">
+                        <a id="contact-email-link" href="mailto:yatharth0503@hotmail.com" class="contact-link-primary">
+                            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2" aria-hidden="true">
+                                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
+                                <polyline points="22,6 12,13 2,6" />
+                            </svg>
+                            <span id="contact-email-text">yatharth0503@hotmail.com</span>
+                        </a>
+                        <div class="contact-secondary-links">
+                            <a id="contact-linkedin-link" href="https://www.linkedin.com/in/yatharthmaharwade/" target="_blank"
+                                rel="noopener noreferrer" class="contact-link-sm">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2" aria-hidden="true">
+                                    <path
+                                        d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" />
+                                    <rect x="2" y="9" width="4" height="12" />
+                                    <circle cx="4" cy="4" r="2" />
+                                </svg>
+                                LinkedIn
+                            </a>
+                            <a id="contact-github-link" href="https://github.com/yatharth5304" target="_blank" rel="noopener noreferrer"
+                                class="contact-link-sm">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2" aria-hidden="true">
+                                    <path
+                                        d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22" />
+                                </svg>
+                                GitHub
+                            </a>
+                            <a href="/resume" target="_blank" rel="noopener noreferrer" class="contact-link-sm">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2" aria-hidden="true">
+                                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
+                                    <polyline points="14 2 14 8 20 8" />
+                                </svg>
+                                Resume
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container footer-content">
+            <div class="footer-brand">
+                <span class="brand-initials sm" aria-hidden="true">YM</span>
+                <span id="footer-full-name">Yatharth Maharwade</span>
+            </div>
+            <div class="footer-copy">
+                &copy; <span id="year"></span> &nbsp;·&nbsp; <span id="footer-tech-text">Built with Spring Boot &amp; PostgreSQL</span>
+            </div>
+            <div class="footer-status">
+                <span class="status-dot" aria-hidden="true"></span>
+                <span class="font-mono" style="font-size: 0.75rem;">All systems operational</span>
+            </div>
+        </div>
+    </footer>
+
+    <script src="/js/app.js"></script>
+</body>
+
+</html>
