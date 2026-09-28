@@ -403,7 +403,9 @@ function typeTerminal() {
     terminalBody.innerHTML = '';
 
     const fullName = document.getElementById('footer-full-name')?.textContent?.trim() || 'Yatharth Maharwade';
-    const role = document.querySelector('.hero-eyebrow, .hero-role, [data-role]')?.textContent?.trim() || 'Backend Engineer';
+    const heroDescription = document.getElementById('hero-description')?.textContent?.trim() || '';
+    const roleMatch = heroDescription.match(/,\s*a\s+(.+?)\s+specializing\s+in/i);
+    const role = roleMatch?.[1] || 'Backend Engineer';
     const primaryStackText = document.getElementById('hero-stack')?.textContent?.trim() || 'Java · Spring Boot · PostgreSQL';
     const primaryStack = splitTags(primaryStackText.replaceAll('·', ','));
     const stack = primaryStack.length ? primaryStack : ['Java', 'Spring Boot', 'PostgreSQL'];
