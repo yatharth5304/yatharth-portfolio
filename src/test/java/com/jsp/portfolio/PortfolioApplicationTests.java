@@ -12,7 +12,6 @@ import org.springframework.boot.test.context.SpringBootTest;
 		"spring.datasource.password=",
 		"spring.jpa.hibernate.ddl-auto=create-drop",
 		"spring.jpa.properties.hibernate.dialect=org.hibernate.dialect.H2Dialect",
-		"spring.flyway.enabled=false"
 })
 class PortfolioApplicationTests {
 
