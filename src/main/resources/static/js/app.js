@@ -1,7 +1,5 @@
 'use strict';
 
-const siteConfig = {};
-
 const COMMANDS = [
     { id: 'about', label: 'Go to About', group: 'Navigate', icon: 'person', action: () => scrollTo('#about') },
     { id: 'experience', label: 'View Experience', group: 'Navigate', icon: 'briefcase', action: () => scrollTo('#experience') },
@@ -10,9 +8,9 @@ const COMMANDS = [
     { id: 'contact', label: 'Get in Touch', group: 'Navigate', icon: 'mail', action: () => scrollTo('#contact') },
     { id: 'top', label: 'Back to Top', group: 'Navigate', icon: 'up', action: () => window.scrollTo({ top: 0, behavior: 'smooth' }) },
     { id: 'resume', label: 'Open Resume', group: 'Links', icon: 'file', action: () => window.open('/resume', '_blank') },
-    { id: 'github', label: 'View GitHub Profile', group: 'Links', icon: 'github', action: () => openExternal(siteConfig.github_url) },
-    { id: 'linkedin', label: 'View LinkedIn Profile', group: 'Links', icon: 'linkedin', action: () => openExternal(siteConfig.linkedin_url) },
-    { id: 'email', label: 'Send Email', group: 'Links', icon: 'mail', action: () => openEmail(siteConfig.email) },
+    { id: 'github', label: 'View GitHub Profile', group: 'Links', icon: 'github', action: () => openExternal(document.getElementById('contact-github-link')?.getAttribute('href')) },
+    { id: 'linkedin', label: 'View LinkedIn Profile', group: 'Links', icon: 'linkedin', action: () => openExternal(document.getElementById('contact-linkedin-link')?.getAttribute('href')) },
+    { id: 'email', label: 'Send Email', group: 'Links', icon: 'mail', action: () => openEmail(document.getElementById('contact-email-text')?.textContent) },
 ];
 
 const ICONS = {
@@ -120,29 +118,6 @@ function renderUnavailable(containerId, message) {
     container.innerHTML = `<p style="color:var(--text-secondary);text-align:center;padding:48px;font-family:var(--font-mono);font-size:0.875rem;">${escapeHtml(message)}</p>`;
 }
 
-function applySiteConfig() {
-    const fullName = siteConfig.full_name;
-    const firstName = fullName ? fullName.split(' ')[0] : '';
-
-    setText('brand-name-text', firstName);
-    setText('hero-availability-text', siteConfig.hero_availability_text);
-    setText('hero-title-line1', siteConfig.hero_title_line1);
-    setText('hero-title-line2', siteConfig.hero_title_line2);
-    setText('hero-description', siteConfig.hero_description);
-    setText('hero-location', siteConfig.location);
-    setText('hero-education', siteConfig.education_short);
-    setText('hero-stack', siteConfig.primary_stack);
-    setText('about-heading', siteConfig.about_heading);
-    setText('about-para-1', siteConfig.about_para_1);
-    setText('about-para-2', siteConfig.about_para_2);
-    setText('contact-email-text', siteConfig.email);
-    setHref('contact-email-link', siteConfig.email ? `mailto:${siteConfig.email}` : '');
-    setHref('contact-linkedin-link', siteConfig.linkedin_url);
-    setHref('contact-github-link', siteConfig.github_url);
-    setText('footer-full-name', siteConfig.full_name);
-    setText('footer-tech-text', siteConfig.footer_tech_text);
-}
-
 function observeFadeIn(scope = document) {
     const items = scope.querySelectorAll('.fade-in-up');
     if (!items.length) {
@@ -180,7 +155,6 @@ document.addEventListener('DOMContentLoaded', async () => {
 
 async function loadPortfolioContent() {
     const results = await Promise.allSettled([
-        fetchJson('/api/config'),
         fetchJson('/api/stats'),
         fetchJson('/api/experiences'),
         fetchJson('/api/projects'),
@@ -188,12 +162,7 @@ async function loadPortfolioContent() {
         fetchJson('/api/principles'),
     ]);
 
-    const [configResult, statsResult, experiencesResult, projectsResult, skillsResult, principlesResult] = results;
-
-    if (configResult.status === 'fulfilled') {
-        Object.assign(siteConfig, configResult.value);
-        applySiteConfig();
-    }
+    const [statsResult, experiencesResult, projectsResult, skillsResult, principlesResult] = results;
 
     if (statsResult.status === 'fulfilled') {
         renderStats(statsResult.value);
@@ -433,9 +402,10 @@ function typeTerminal() {
 
     terminalBody.innerHTML = '';
 
-    const fullName = siteConfig.full_name || 'Yatharth Maharwade';
-    const role = siteConfig.role || 'Backend Engineer';
-    const primaryStack = splitTags(String(siteConfig.primary_stack || '').replaceAll('·', ','));
+    const fullName = document.getElementById('footer-full-name')?.textContent?.trim() || 'Yatharth Maharwade';
+    const role = document.querySelector('.hero-eyebrow, .hero-role, [data-role]')?.textContent?.trim() || 'Backend Engineer';
+    const primaryStackText = document.getElementById('hero-stack')?.textContent?.trim() || 'Java · Spring Boot · PostgreSQL';
+    const primaryStack = splitTags(primaryStackText.replaceAll('·', ','));
     const stack = primaryStack.length ? primaryStack : ['Java', 'Spring Boot', 'PostgreSQL'];
 
     const sequences = [
