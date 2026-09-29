@@ -154,45 +154,9 @@ document.addEventListener('DOMContentLoaded', async () => {
 });
 
 async function loadPortfolioContent() {
-    const results = await Promise.allSettled([
-        fetchJson('/api/stats'),
-        fetchJson('/api/experiences'),
-        fetchJson('/api/projects'),
-        fetchJson('/api/skills'),
-        fetchJson('/api/principles'),
-    ]);
-
-    const [statsResult, experiencesResult, projectsResult, skillsResult, principlesResult] = results;
-
-    if (statsResult.status === 'fulfilled') {
-        renderStats(statsResult.value);
-    } else {
-        renderUnavailable('about-stats-container', 'Could not load stats from the backend.');
-    }
-
-    if (experiencesResult.status === 'fulfilled') {
-        renderExperiences(experiencesResult.value);
-    } else {
-        renderUnavailable('experience-timeline', 'Could not load experience from the backend.');
-    }
-
-    if (projectsResult.status === 'fulfilled') {
-        renderProjects(projectsResult.value);
-    } else {
-        renderUnavailable('projects-container', 'Could not reach the project API.');
-    }
-
-    if (skillsResult.status === 'fulfilled') {
-        renderSkills(skillsResult.value);
-    } else {
-        renderUnavailable('skills-container', 'Could not load skills from the backend.');
-    }
-
-    if (principlesResult.status === 'fulfilled') {
-        renderPrinciples(principlesResult.value);
-    } else {
-        renderUnavailable('principles-grid', 'Could not load principles from the backend.');
-    }
+    // Public portfolio content is authored directly in index.html.
+    // Keep this function as a compatibility hook for existing callers.
+    return Promise.resolve();
 }
 
 function initNavbar() {
