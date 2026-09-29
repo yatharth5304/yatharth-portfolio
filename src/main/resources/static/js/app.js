@@ -154,9 +154,50 @@ document.addEventListener('DOMContentLoaded', async () => {
 });
 
 async function loadPortfolioContent() {
-    // Public portfolio content is authored directly in index.html.
-    // Keep this function as a compatibility hook for existing callers.
-    return Promise.resolve();
+    const results = await Promise.allSettled([
+        fetchJson('/api/stats'),
+        fetchJson('/api/experiences'),
+        fetchJson('/api/projects'),
+        fetchJson('/api/skills'),
+        fetchJson('/api/principles')
+    ]);
+
+    const [statsResult, experiencesResult, projectsResult, skillsResult, principlesResult] = results;
+
+    if (statsResult.status === 'fulfilled') {
+        renderStats(statsResult.value);
+    } else {
+        renderUnavailable('about-stats-container', 'Unable to load stats right now.');
+        console.error('Failed to load stats', statsResult.reason);
+    }
+
+    if (experiencesResult.status === 'fulfilled') {
+        renderExperiences(experiencesResult.value);
+    } else {
+        renderUnavailable('experience-timeline', 'Unable to load experience right now.');
+        console.error('Failed to load experiences', experiencesResult.reason);
+    }
+
+    if (projectsResult.status === 'fulfilled') {
+        renderProjects(projectsResult.value);
+    } else {
+        renderUnavailable('projects-container', 'Unable to load projects right now.');
+        console.error('Failed to load projects', projectsResult.reason);
+    }
+
+    if (skillsResult.status === 'fulfilled') {
+        renderSkills(skillsResult.value);
+    } else {
+        renderUnavailable('skills-container', 'Unable to load skills right now.');
+        console.error('Failed to load skills', skillsResult.reason);
+    }
+
+    if (principlesResult.status === 'fulfilled') {
+        renderPrinciples(principlesResult.value);
+    } else {
+        renderUnavailable('principles-grid', 'Unable to load principles right now.');
+        console.error('Failed to load principles', principlesResult.reason);
+    }
 }
 
 function initNavbar() {
@@ -549,7 +590,7 @@ function renderSkills(skills) {
     groupedSkills.forEach((categorySkills, category) => {
         const orderedSkills = categorySkills.slice();
 
-        const isPrimary = orderedSkills.some(skill => skill.primary || skill.isPrimary);
+        const isPrimary = orderedSkills.some(skill => skill.primarySkill || skill.isPrimary);
         const chipsHtml = orderedSkills
             .map(skill => `<span class="skill-chip${isPrimary ? ' primary' : ''}">${escapeHtml(skill.name)}</span>`)
             .join('');
