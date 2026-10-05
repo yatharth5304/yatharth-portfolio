@@ -154,9 +154,28 @@ document.addEventListener('DOMContentLoaded', async () => {
 });
 
 async function loadPortfolioContent() {
-    // Public portfolio content is authored directly in index.html.
-    // Keep this function as a compatibility hook for existing callers.
-    return Promise.resolve();
+    // Projects and skills are database-backed content. Load them through the
+    // Spring Boot API, which reads from the Supabase-backed PostgreSQL database.
+    const results = await Promise.allSettled([
+        fetchJson('/api/projects'),
+        fetchJson('/api/skills'),
+    ]);
+
+    const [projectsResult, skillsResult] = results;
+
+    if (projectsResult.status === 'fulfilled') {
+        renderProjects(projectsResult.value);
+    } else {
+        renderUnavailable('projects-container', 'Could not load projects from the backend.');
+        console.error('Failed to load projects:', projectsResult.reason);
+    }
+
+    if (skillsResult.status === 'fulfilled') {
+        renderSkills(skillsResult.value);
+    } else {
+        renderUnavailable('skills-container', 'Could not load skills from the backend.');
+        console.error('Failed to load skills:', skillsResult.reason);
+    }
 }
 
 function initNavbar() {
@@ -549,7 +568,7 @@ function renderSkills(skills) {
     groupedSkills.forEach((categorySkills, category) => {
         const orderedSkills = categorySkills.slice();
 
-        const isPrimary = orderedSkills.some(skill => skill.primary || skill.isPrimary);
+        const isPrimary = orderedSkills.some(skill => skill.primary || skill.isPrimary || skill.primarySkill);
         const chipsHtml = orderedSkills
             .map(skill => `<span class="skill-chip${isPrimary ? ' primary' : ''}">${escapeHtml(skill.name)}</span>`)
             .join('');
