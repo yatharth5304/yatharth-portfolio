@@ -154,20 +154,28 @@ document.addEventListener('DOMContentLoaded', async () => {
 });
 
 async function loadPortfolioContent() {
-    // Projects and skills are database-backed content. Load them through the
-    // Spring Boot API, which reads from the Supabase-backed PostgreSQL database.
+    // Projects, experience, and skills are database-backed content. Load them
+    // through the Spring Boot API, which reads from Supabase-backed PostgreSQL.
     const results = await Promise.allSettled([
         fetchJson('/api/projects'),
+        fetchJson('/api/experiences'),
         fetchJson('/api/skills'),
     ]);
 
-    const [projectsResult, skillsResult] = results;
+    const [projectsResult, experiencesResult, skillsResult] = results;
 
     if (projectsResult.status === 'fulfilled') {
         renderProjects(projectsResult.value);
     } else {
         renderUnavailable('projects-container', 'Could not load projects from the backend.');
         console.error('Failed to load projects:', projectsResult.reason);
+    }
+
+    if (experiencesResult.status === 'fulfilled') {
+        renderExperiences(experiencesResult.value);
+    } else {
+        renderUnavailable('experience-timeline', 'Could not load experience from the backend.');
+        console.error('Failed to load experience:', experiencesResult.reason);
     }
 
     if (skillsResult.status === 'fulfilled') {
