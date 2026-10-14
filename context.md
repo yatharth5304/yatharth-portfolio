@@ -3,7 +3,8 @@
 Living reference for working on this codebase. Maintained automatically; read it when
 structure, past decisions, or reasoning is unclear.
 
-Last full pass: 2026-09-21 (branch `main`, HEAD `6ab0e78`).
+Frontend migration: 2026-10-14, branch `codex/reference-3d-redesign`; see `REDESIGN.md`.
+Historical architecture notes below predate the current checkout in several places (notably Flyway and `/api/config`, which are absent).
 Live site: <https://yatharth-portfolio.onrender.com/>
 
 ---
@@ -35,7 +36,7 @@ engineering managers.
 | ORM | Hibernate 7.x via Spring Data JPA |
 | DB (runtime) | PostgreSQL (Supabase); H2 in-memory for tests |
 | Migrations | Flyway (`flyway-core`, `flyway-database-postgresql`), `V1`–`V9` |
-| Frontend | Vanilla HTML5 + CSS3 (custom properties) + ES6 JS. **No framework, no build step, no npm.** |
+| Frontend | React + TypeScript + Three.js + GSAP + Lenis in `frontend/`. Vite production assets are bundled into Spring static resources via the `frontend` Maven profile or Docker Node stage. The tracked legacy frontend is preserved. |
 | Build | Maven wrapper (`mvnw`), `spring-boot-maven-plugin` |
 | Container | Multi-stage Dockerfile (`maven:3.9.9-eclipse-temurin-21` → `eclipse-temurin:21-jre`) |
 | Host | Render (web service), port from `$PORT` |
@@ -394,6 +395,8 @@ Reconstructed from migration headers, commit history, and code comments. Newest 
 ---
 
 ## 13. Changelog
+
+- **2026-10-14** — Added the original MIT reference React/Three/GSAP frontend on a separate branch, mapped verified existing content and five public APIs, retained Spring admin/CSRF/resume/health/case studies, preserved the original character unchanged and sanitized the separate monitor imagery, bundled font/icon/license assets, added responsive and browser verification and Java integration tests. No DB changes, push, or deployment. See `REDESIGN.md` for source commits, build and verification commands.
 
 - **2026-09-21** — Production-readiness pass. Fixed all six blocking issues from audit:
   1. **Admin partial-update bug** (9.2): Implemented fetch-then-patch merge in `ProjectService.save()` and `SkillService.save()` — only fields present in request are updated; existing fields (`slug`, `problem`, `highlight`, `challenge`, `featured`, `displayOrder`, `is_primary`) are preserved. Added `Skill.getDisplayOrder()` returning `Integer` for null-checking.

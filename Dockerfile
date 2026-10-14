@@ -1,3 +1,11 @@
+# -------- React Frontend --------
+FROM node:22-alpine AS frontend
+WORKDIR /frontend
+COPY frontend/package*.json ./
+RUN npm ci
+COPY frontend/ ./
+RUN npm run build
+
 # -------- Build Stage --------
 FROM maven:3.9.9-eclipse-temurin-21 AS build
 
@@ -7,6 +15,7 @@ COPY pom.xml .
 RUN mvn dependency:go-offline
 
 COPY src ./src
+COPY --from=frontend /frontend/dist/ ./src/main/resources/static/
 RUN mvn clean package -DskipTests
 
 

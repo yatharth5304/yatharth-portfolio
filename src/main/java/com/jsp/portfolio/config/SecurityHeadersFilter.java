@@ -18,11 +18,12 @@ public class SecurityHeadersFilter extends OncePerRequestFilter {
         // Content Security Policy - restrictive but allows needed resources
         response.setHeader("Content-Security-Policy",
                 "default-src 'self'; " +
-                "script-src 'self' 'unsafe-inline' https://fonts.googleapis.com; " +
+                "script-src 'self' 'unsafe-inline' 'wasm-unsafe-eval' https://fonts.googleapis.com; " +
                 "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; " +
                 "font-src 'self' https://fonts.gstatic.com; " +
-                "img-src 'self' data: https:; " +
+                "img-src 'self' blob: data: https:; " +
                 "connect-src 'self'; " +
+                "worker-src 'self' blob:; " +
                 "frame-ancestors 'none'; " +
                 "base-uri 'self'; " +
                 "form-action 'self'");

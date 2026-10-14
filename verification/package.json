@@ -1,0 +1,1 @@
+{"name":"portfolio-verification","private":true,"type":"module","devDependencies":{"playwright":"1.56.1","@axe-core/playwright":"4.10.2"}}

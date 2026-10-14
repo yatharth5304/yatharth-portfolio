@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://yatharthm.is-a.dev/sitemap.xml

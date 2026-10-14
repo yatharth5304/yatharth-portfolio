@@ -1,0 +1,5 @@
+import {chromium} from 'playwright';
+import assert from 'node:assert/strict';
+const browser=await chromium.launch({executablePath:'C:/Program Files (x86)/Microsoft/Edge/Application/msedge.exe',headless:true});
+const slugs=['developer-portfolio','foodfinder','omdb-movie-explorer','student-attendance-management-system','realtime-face-tracking-gimbal','music-webapp','quiz-web-app'];
+try{const page=await browser.newPage();for(const slug of slugs){const response=await page.goto(`http://127.0.0.1:8080/projects/${slug}.html`,{waitUntil:'domcontentloaded'});assert.equal(response.status(),200);await page.evaluate(()=>document.fonts.ready);const style=await page.evaluate(()=>{const c=getComputedStyle(document.body);return {font:c.fontFamily,bg:c.backgroundColor,text:c.color};});assert.match(style.font,/Geist/);assert.equal(style.bg,'rgb(11, 8, 12)');assert.equal(style.text,'rgb(234, 229, 236)');assert.equal(await page.locator('a[href="/myworks"]').count(),1);assert.equal(await page.locator('a[href*="yourrepo"]').count(),0);console.log(slug,'PASS');}}finally{await browser.close();}

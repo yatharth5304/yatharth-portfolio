@@ -1,0 +1,69 @@
+{
+  "date": "2026-10-14",
+  "localBranch": "codex/reference-3d-redesign",
+  "character": "Original reference character restored unchanged; all non-screen model data verified identical",
+  "build": "Integrated clean build and subsequent original-character frontend package: PASS",
+  "javaTests": 4,
+  "browserTarget": "Spring Boot at http://127.0.0.1:8080 with local H2",
+  "checks": [
+    "Exact theme variables, primary text, Geist",
+    "Original character retained; head tracking follows pointer",
+    "Eyebrow hover reaction",
+    "Intro, blink, typing and keyboard clips run",
+    "Scroll transforms character and camera; monitor reveal",
+    "Services disclosures support keyboard interaction",
+    "Command palette keyboard search and navigation",
+    "Direct /myworks route; all seven backend-served case study links",
+    "All seven case-study pages: HTTP 200, Geist, exact palette, verified links, /myworks return",
+    "Tablet loader completes; mobile fallback; mobile navigation; no horizontal overflow"
+  ],
+  "runtimeErrors": [],
+  "theme": {
+    "accent": "#c2a4ff",
+    "background": "#0b080c",
+    "text": "rgb(234, 229, 236)",
+    "font": "Geist, sans-serif"
+  },
+  "accessibility": {
+    "desktop": [],
+    "tablet": [
+      {
+        "id": "color-contrast",
+        "impact": "serious",
+        "nodes": [
+          [
+            ".navbar-title"
+          ],
+          [
+            ".resume-button > .hover-link[data-cursor=\"disable\"] > .hover-in"
+          ]
+        ]
+      }
+    ],
+    "mobile": [
+      {
+        "id": "color-contrast",
+        "impact": "serious",
+        "nodes": [
+          [
+            ".navbar-title"
+          ],
+          [
+            ".resume-button > .hover-link[data-cursor=\"disable\"] > .hover-in"
+          ]
+        ]
+      }
+    ]
+  },
+  "referenceScreenshots": [
+    "local-desktop-hero.png",
+    "reference-desktop-hero.png",
+    "reference-mobile-hero.png"
+  ],
+  "dependencyAudit": {
+    "moderate": 2,
+    "high": 1,
+    "scope": "Vite/esbuild development toolchain; requires major upgrade"
+  },
+  "deployment": "Not pushed, merged or deployed"
+}
