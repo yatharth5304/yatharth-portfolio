@@ -10,8 +10,63 @@
     <meta name="author" content="Yatharth Maharwade">
     <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
     <meta name="theme-color" content="#0b080c">
-    <!-- Keep the first paint dark while the application assets load. -->
-    <style>html { background-color: #0b080c; }</style>
+    <!-- This small shell can paint before JavaScript and API content are ready.
+         All loader rules are scoped; the approved React loader owns the handoff. -->
+    <style>
+      html { background-color: #0b080c; }
+      #startup-loader {
+        position: fixed; inset: 0; z-index: 2147483647; overflow: hidden;
+        display: flex; align-items: center; justify-content: center;
+        background: #eae5ec; color: #0b080c;
+        font-family: Geist, sans-serif; line-height: 1.5;
+      }
+      #startup-loader .startup-brand {
+        position: absolute; top: 20px; left: 15px;
+        font-size: 14px; font-weight: 700; letter-spacing: .2px;
+      }
+      #startup-loader .startup-marquee {
+        position: absolute; left: 0; top: 50%; transform: translateY(-50%);
+        display: flex; width: max-content;
+      }
+      #startup-loader .startup-track {
+        display: flex; flex-shrink: 0; white-space: nowrap;
+        animation: startup-marquee 75s linear infinite;
+      }
+      #startup-loader .startup-track span {
+        position: relative; padding: 0 50px;
+        font-size: 60px; font-weight: 600; text-transform: uppercase;
+      }
+      #startup-loader .startup-track span::before {
+        content: ""; position: absolute; left: 0; top: 50%;
+        width: 20px; height: 20px; border-radius: 50%; background: #0b080c;
+        transform: translate(-50%, -50%);
+      }
+      #startup-loader .startup-pill {
+        position: relative; display: flex; align-items: center; justify-content: space-between;
+        box-sizing: content-box; width: 145px; padding: 20px 50px;
+        border: 6px solid #000; border-radius: 100px; background: #000; color: #eae5ec;
+        font-size: 18px; font-weight: 500; text-transform: uppercase;
+        box-shadow: 0 15px 15px rgb(0 0 0 / 20%);
+      }
+      #startup-loader .startup-percent { opacity: .7; font-weight: 300; }
+      #startup-loader .startup-pill::after {
+        content: ""; position: absolute; right: 29px; width: 15px; height: 25px;
+        background: #fff; animation: startup-blink 1s linear infinite;
+      }
+      @keyframes startup-marquee { to { transform: translateX(-100%); } }
+      @keyframes startup-blink { 0%, 100% { opacity: 0; } 25%, 75% { opacity: 1; } }
+      @media (min-width: 500px) { #startup-loader .startup-brand { font-size: 16px; } }
+      @media (min-width: 768px) { #startup-loader .startup-brand { left: 3%; } }
+      @media (min-width: 1200px) { #startup-loader .startup-brand { top: 35px; font-size: 18px; } }
+      @media (min-width: 1400px) {
+        #startup-loader .startup-track span { font-size: 100px; }
+        #startup-loader .startup-pill { width: 210px; padding: 30px 70px; font-size: 25px; }
+        #startup-loader .startup-pill::after { right: 49px; }
+      }
+      @media (prefers-reduced-motion: reduce) {
+        #startup-loader .startup-track, #startup-loader .startup-pill::after { animation: none; }
+      }
+    </style>
     <link rel="canonical" href="https://yatharthm.is-a.dev/">
 
     <meta property="og:type" content="website">
@@ -93,4 +148,18 @@
 
 
     <link rel="icon" type="image/svg+xml" href="/favicon.svg">
-</head><body><div id="root"></div><noscript>Yatharth Maharwade, Java Backend Engineer in Pune, India. Java, Spring Boot, PostgreSQL. <a href="/resume">Resume</a> · <a href="mailto:yatharth0503@hotmail.com">Contact</a></noscript><script type="module" src="/src/main.tsx"></script></body></html>
+</head>
+<body>
+    <div id="startup-loader" role="status" aria-label="Loading portfolio">
+        <div class="startup-brand" aria-hidden="true">YatharthMaharwade</div>
+        <div class="startup-marquee" aria-hidden="true">
+            <div class="startup-track"><span>Java Backend Engineer</span><span>Spring Boot Developer</span><span>Java Backend Engineer</span><span>Spring Boot Developer</span></div>
+            <div class="startup-track"><span>Java Backend Engineer</span><span>Spring Boot Developer</span><span>Java Backend Engineer</span><span>Spring Boot Developer</span></div>
+        </div>
+        <div class="startup-pill" aria-hidden="true">Loading <span class="startup-percent">0%</span></div>
+    </div>
+    <div id="root"></div>
+    <noscript><style>#startup-loader { display: none; }</style>Yatharth Maharwade, Java Backend Engineer in Pune, India. Java, Spring Boot, PostgreSQL. <a href="/resume">Resume</a> · <a href="mailto:yatharth0503@hotmail.com">Contact</a></noscript>
+    <script type="module" src="/src/main.tsx"></script>
+</body>
+</html>
