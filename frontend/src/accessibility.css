@@ -2,12 +2,6 @@
 :focus-visible { outline: 2px solid var(--accentColor); outline-offset: 6px; }
 .skip-link { position:fixed; top:10px; left:10px; z-index:10000; padding:12px; background:var(--backgroundColor); transform:translateY(-200%); }
 .skip-link:focus { transform:none; }
-.portfolio-details { padding-top:120px; padding-bottom:80px; background:var(--backgroundColor); }
-.portfolio-details h2 { font-weight:400; font-size:48px; }
-.portfolio-details h2 span, .portfolio-stats strong { color:var(--accentColor); }
-.portfolio-stats, .portfolio-principles { display:grid; grid-template-columns:repeat(4,1fr); gap:24px; }
-.portfolio-principles { grid-template-columns:repeat(2,1fr); }
-.portfolio-principles article { padding:24px 0; border-top:1px solid #c2a4ff40; }
 .career-detail { font-size:14px; opacity:.75; }
 .command-trigger { position:fixed; bottom:84px; right:24px; z-index:100; color:#eae5ec; background:#0b080c; border:1px solid #c2a4ff60; border-radius:8px; padding:8px; font:inherit; cursor:pointer; }
 .command-palette { background:#0b080c; color:#eae5ec; border:1px solid #c2a4ff; border-radius:16px; width:min(500px,80vw); padding:24px; font-family:Geist,sans-serif; }
@@ -16,7 +10,7 @@
 .command-palette button { display:block; width:100%; text-align:left; padding:12px; border:0; color:inherit; background:transparent; font:inherit; cursor:pointer; }
 .command-palette button.selected { background:#c2a4ff20; }
 .scene-error { position:fixed; z-index:1000; bottom:20px; left:20px; max-width:420px; padding:20px; background:#0b080c; border:1px solid #c2a4ff; color:#eae5ec; }
-@media(max-width:1024px) { .portfolio-stats,.portfolio-principles { grid-template-columns:repeat(2,1fr); } .portfolio-details h2 { font-size:32px; } .landing-container { overflow:hidden; } }
+@media(max-width:1024px) { .landing-container { overflow:hidden; } }
 @media(prefers-reduced-motion:reduce) { *,*::before,*::after { scroll-behavior:auto!important; } .techstack-video { display:none; } }
 @media(pointer:coarse) { .cursor-main { display:none; } }
 /* Preserve the original type sizes while overriding the desktop 150% width. */

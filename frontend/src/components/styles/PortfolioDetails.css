@@ -1,0 +1,92 @@
+/* Use the same width/breakpoints as Career, Work and Contact. The shared
+   section-container utility sets width only; each section owns its alignment. */
+.portfolio-details {
+  margin-inline: auto;
+  padding-block: 120px 80px;
+  background: var(--backgroundColor);
+}
+
+.portfolio-details h2 {
+  margin: 0 0 16px;
+  font-weight: 400;
+  font-size: 48px;
+}
+
+.portfolio-details h2 + p {
+  margin: 0;
+}
+
+.portfolio-details h2 span,
+.portfolio-details .portfolio-stats strong {
+  color: var(--accentColor);
+}
+
+.portfolio-details .portfolio-stats,
+.portfolio-details .portfolio-principles {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 24px;
+}
+
+.portfolio-details .portfolio-stats {
+  margin-block: 32px 48px;
+}
+
+.portfolio-details .portfolio-stats p {
+  display: flex;
+  align-items: baseline;
+  gap: 0.4em;
+  min-width: 0;
+  margin: 0;
+}
+
+.portfolio-details .portfolio-stats strong {
+  flex-shrink: 0;
+}
+
+.portfolio-details .portfolio-principles {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.portfolio-details .portfolio-principles article {
+  min-width: 0;
+  padding: 24px 0;
+  border-top: 1px solid #c2a4ff40;
+}
+
+.portfolio-details .portfolio-principles h3 {
+  margin: 0 0 16px;
+}
+
+.portfolio-details .portfolio-principles p {
+  max-width: 52ch;
+  margin: 0;
+}
+
+@media (max-width: 1024px) {
+  .portfolio-details {
+    padding-top: 80px;
+  }
+
+  .portfolio-details h2 {
+    font-size: 32px;
+  }
+
+  .portfolio-details .portfolio-stats {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 900px) {
+  .portfolio-details .portfolio-principles {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+@media (max-width: 600px) {
+  .portfolio-details {
+    /* The approved mobile resume shortcut occupies the right-hand rail. */
+    box-sizing: border-box;
+    padding-inline-end: 24px;
+  }
+}

@@ -1,4 +1,5 @@
 import { config } from '../config';
+import './styles/PortfolioDetails.css';
 export default function PortfolioDetails() {
     return <section className="portfolio-details section-container" aria-label="Education and engineering principles">
   <h2>Education <span>&</span> approach</h2><p>{config.education} · Nagpur, India</p>
