@@ -2,7 +2,8 @@ import { TextSplitter } from "../../utils/textSplitter";
 import gsap from "gsap";
 import { lenis } from "../Navbar";
 
-export function initialFX() {
+export async function initialFX() {
+  await document.fonts.ready;
   document.body.style.overflowY = "auto";
   if (lenis) {
     lenis.start();

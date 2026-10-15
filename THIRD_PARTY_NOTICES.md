@@ -7,8 +7,9 @@ Copyright (c) 2025 Redoyanul Haque.
 The original rigged developer model, all animation clips, environment HDR,
 generic eye/ground textures, and atmosphere video are from that MIT-licensed repository.
 The character's hair, face, clothing, mesh data, rig and clips are unchanged.
-Only the separate monitor prop's personal screenshot is removed and replaced with
-an authored terminal. The original image payload is removed from the GLB binary.
+The original GLB is retained, including the generic monitor glow mask (previously
+misidentified as a personal screenshot). An authored terminal is mapped onto the
+physical display surface at runtime; the glow texture is unchanged.
 No author photos or project screenshots are shipped.
 
 Geist: SIL Open Font License 1.1 (Google Fonts / Vercel Geist).

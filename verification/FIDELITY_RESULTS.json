@@ -1,0 +1,59 @@
+{
+  "date": "2026-10-15",
+  "referenceCommit": "e1491d6d709d4fa6df2ca88277f0c31b5e4f6ea7",
+  "implementationBaseline": "1ef88f4",
+  "build": "passed",
+  "java": {
+    "tests": 4,
+    "failures": 0,
+    "errors": 0
+  },
+  "browser": {
+    "engine": "Microsoft Edge / Chromium",
+    "viewports": [
+      {
+        "width": 1440,
+        "height": 900
+      },
+      {
+        "width": 1920,
+        "height": 1080
+      },
+      {
+        "width": 390,
+        "height": 844
+      },
+      {
+        "width": 820,
+        "height": 1180
+      }
+    ],
+    "errors": [],
+    "failedRequiredAssets": [],
+    "csp": "Unchanged Spring policy; verified snapshot API fixture",
+    "checks": [
+      "CSP unchanged; original eye texture decoded and skinned; glow atlas restored; camera/FOV retained; pointer tracking; eyebrow hover; blink/typing clips; assembled monitor reveal; services clicks; section navigation; command palette; contact links; seven projects; no horizontal overflow; no console errors or failed requests"
+    ],
+    "resize": {
+      "errors": [],
+      "mobile": "Desktop scene unmounted; layout fits",
+      "desktop": "One scene remounted; original eye texture decoded",
+      "horizontalWork": {
+        "before": "matrix(1, 0, 0, 1, 0, 0)",
+        "after": "matrix(1, 0, 0, 1, -679.999, 0)"
+      },
+      "reverseNavigation": {
+        "from": 9735,
+        "to": 1080
+      }
+    }
+  },
+  "sourceModelSha256": "c287a4d10bbbbc4c779f7b0a68b666b530ef9754142843aa048b4d5976c0d052",
+  "evidenceDirectory": "verification/artifacts/fidelity",
+  "limitations": [
+    "No deployment or push",
+    "Mobile uses the original model portrait in place of the reference author photo",
+    "Safari/Firefox, physical phones and production database connectivity were not tested in the browser pass",
+    "Independent animation phases make raw pixel differences diagnostic only"
+  ]
+}

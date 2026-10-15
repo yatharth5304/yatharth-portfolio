@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import { config } from '../config';
 import { lenis } from './Navbar';
+import { sectionTop } from '../utils/sectionNavigation';
 export default function CommandPalette() {
     const ref = useRef<HTMLDialogElement>(null);
     const input = useRef<HTMLInputElement>(null);
@@ -11,8 +12,9 @@ export default function CommandPalette() {
     function choose(href: string) { ref.current?.close(); if (href.startsWith('#')) {
         const target = document.querySelector(href) as HTMLElement;
         if (target) {
-            lenis?.scrollTo(target);
-            target.scrollIntoView({ behavior: 'smooth' });
+            const top = sectionTop(target);
+            if (lenis) lenis.scrollTo(top);
+            else window.scrollTo({top, behavior:'smooth'});
         }
     }
     else

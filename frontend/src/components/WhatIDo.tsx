@@ -1,6 +1,5 @@
-import { useEffect, useRef } from "react";
+import { useRef } from "react";
 import "./styles/WhatIDo.css";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { config } from "../config";
 
 const WhatIDo = () => {
@@ -8,23 +7,6 @@ const WhatIDo = () => {
   const setRef = (el: HTMLDivElement | null, index: number) => {
     containerRef.current[index] = el;
   };
-  useEffect(() => {
-    if (ScrollTrigger.isTouch) {
-      containerRef.current.forEach((container) => {
-        if (container) {
-          container.classList.remove("what-noTouch");
-          container.addEventListener("click", () => handleClick(container));
-        }
-      });
-    }
-    return () => {
-      containerRef.current.forEach((container) => {
-        if (container) {
-          container.removeEventListener("click", () => handleClick(container));
-        }
-      });
-    };
-  }, []);
   return (
     <div className="whatIDO">
       <div className="what-box">
@@ -60,8 +42,9 @@ const WhatIDo = () => {
             </svg>
           </div>
           <div
-            className="what-content what-noTouch"
+            className={`what-content ${window.matchMedia('(hover: hover)').matches ? 'what-noTouch' : ''}`}
             role="button" tabIndex={0} aria-label="Java backend skills and tools" aria-expanded="false"
+            onClick={event => handleClick(event.currentTarget)}
             onKeyDown={event => { if(event.key === 'Enter' || event.key === ' ') { event.preventDefault(); handleClick(event.currentTarget); } }}
             ref={(el) => setRef(el, 0)}
           >
@@ -105,8 +88,9 @@ const WhatIDo = () => {
             </div>
           </div>
           <div
-            className="what-content what-noTouch"
+            className={`what-content ${window.matchMedia('(hover: hover)').matches ? 'what-noTouch' : ''}`}
             role="button" tabIndex={0} aria-label="Data and systems skills and tools" aria-expanded="false"
+            onClick={event => handleClick(event.currentTarget)}
             onKeyDown={event => { if(event.key === 'Enter' || event.key === ' ') { event.preventDefault(); handleClick(event.currentTarget); } }}
             ref={(el) => setRef(el, 1)}
           >

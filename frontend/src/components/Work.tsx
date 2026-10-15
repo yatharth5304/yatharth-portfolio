@@ -10,8 +10,8 @@ gsap.registerPlugin(ScrollTrigger);
 
 const Work = () => {
   useEffect(() => {
-    // Disable pinning on mobile to allow scrolling
-    if (window.innerWidth <= 768) return;
+    const media = gsap.matchMedia();
+    media.add('(min-width: 769px)', () => {
 
     let translateX: number = 0;
 
@@ -24,17 +24,18 @@ const Work = () => {
       const rect = box[0].getBoundingClientRect();
       const parentWidth = box[0].parentElement!.getBoundingClientRect().width;
       let padding: number =
-        parseInt(window.getComputedStyle(box[0]).padding) / 2;
+        parseInt(window.getComputedStyle(box[0]).paddingLeft) / 2;
       translateX = rect.width * box.length - (rectLeft + parentWidth) + padding;
     }
 
     setTranslateX();
+    ScrollTrigger.addEventListener('refreshInit', setTranslateX);
 
     let timeline = gsap.timeline({
       scrollTrigger: {
         trigger: ".work-section",
         start: "top top",
-        end: `+=${translateX}`,
+        end: () => `+=${translateX}`,
         scrub: 1,
         pin: true,
         pinSpacing: true,
@@ -45,7 +46,7 @@ const Work = () => {
     });
 
     timeline.to(".work-flex", {
-      x: -translateX,
+      x: () => -translateX,
       ease: "none",
     });
 
@@ -54,9 +55,12 @@ const Work = () => {
 
     // Clean up
     return () => {
+      ScrollTrigger.removeEventListener('refreshInit', setTranslateX);
       timeline.kill();
       ScrollTrigger.getById("work")?.kill();
     };
+    });
+    return () => media.revert();
   }, []);
   return (
     <div className="work-section" id="work">

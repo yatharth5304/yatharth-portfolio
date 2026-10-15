@@ -31,7 +31,7 @@ export default function Scene() {
         const container = canvasDiv.current;
         if (!container)
             return;
-        let stopped = false, frame = 0, introTimer = 0, cleanupHover: (() => void) | undefined, cleanupScroll: (() => void) | undefined, charContext: gsap.Context | undefined;
+        let stopped = false, frame = 0, introTimer = 0, cleanupHover: (() => void) | undefined, cleanupAnimation: (() => void) | undefined, cleanupScroll: (() => void) | undefined, charContext: gsap.Context | undefined;
         const scene = new THREE.Scene();
         let renderer: THREE.WebGLRenderer;
         try {
@@ -69,13 +69,14 @@ export default function Scene() {
             light.setPointLight(screen); renderer.render(scene, camera); if (window.__portfolio3D)
             window.__portfolio3D.frames++; };
         animate();
-        setCharacter(renderer, scene, camera).loadCharacter().then(async (gltf) => {
+        Promise.all([setCharacter(renderer, scene, camera).loadCharacter(), light.ready]).then(async ([gltf]) => {
             if (stopped)
                 return;
             character = gltf.scene;
             scene.add(character);
             const animations = setAnimations(gltf);
             mixer = animations.mixer;
+            cleanupAnimation = animations.dispose;
             isIntroPlaying = animations.isIntroPlaying;
             if (hoverDivRef.current)
                 cleanupHover = animations.hover(gltf, hoverDivRef.current);
@@ -91,7 +92,7 @@ export default function Scene() {
             ScrollTrigger.refresh();
         }).catch(reason => { if (stopped)
             return; progress.clear(); setIsLoading(false); document.body.style.overflowY = 'auto'; setError(`The full 3D character could not load: ${reason instanceof Error ? reason.message : String(reason)}. Retry to restore it.`); });
-        return () => { stopped = true; cancelAnimationFrame(frame); clearTimeout(introTimer); progress.cancel(); cleanupHover?.(); cleanupScroll?.(); charContext?.revert(); mixer?.stopAllAction(); document.removeEventListener('mousemove', move); window.removeEventListener('resize', resize); scene.traverse(o => { const m = o as THREE.Mesh; if (m.isMesh) {
+        return () => { stopped = true; cancelAnimationFrame(frame); clearTimeout(introTimer); progress.cancel(); cleanupHover?.(); cleanupScroll?.(); cleanupAnimation?.(); charContext?.revert(); document.removeEventListener('mousemove', move); window.removeEventListener('resize', resize); scene.traverse(o => { const m = o as THREE.Mesh; if (m.isMesh) {
             m.geometry.dispose();
             const materials = Array.isArray(m.material) ? m.material : [m.material];
             materials.forEach(material => material.dispose());

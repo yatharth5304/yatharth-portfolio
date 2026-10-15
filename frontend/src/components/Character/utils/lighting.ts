@@ -18,9 +18,9 @@ const setLighting = (scene: THREE.Scene) => {
   pointLight.castShadow = true;
   scene.add(pointLight);
 
-  new RGBELoader()
+  const ready = new RGBELoader()
     .setPath("/models/")
-    .load("char_enviorment.hdr", function (texture) {
+    .loadAsync("char_enviorment.hdr").then(texture => {
       texture.mapping = THREE.EquirectangularReflectionMapping;
       scene.environment = texture;
       scene.environmentIntensity = 0;
@@ -55,7 +55,7 @@ const setLighting = (scene: THREE.Scene) => {
     });
   }
 
-  return { setPointLight, turnOnLights };
+  return { setPointLight, turnOnLights, ready };
 };
 
 export default setLighting;

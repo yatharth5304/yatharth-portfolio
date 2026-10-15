@@ -30,7 +30,10 @@ const Career = () => {
                 </div>
                 <h3>{getDisplayYear(exp.period)}</h3>
               </div>
-              <p>{exp.description}</p><p className="career-detail">{exp.period} · {exp.location}</p>
+              <div className="career-summary">
+                <p>{exp.description}</p>
+                <p className="career-detail">{exp.period} · {exp.location}</p>
+              </div>
             </div>
           ))}
         </div>

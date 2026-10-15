@@ -34,8 +34,8 @@ against the reference GLB and are identical. GLTFLoader's original sanitized bon
 names and the original animation bindings are retained and validated at load time.
 No retargeting or replacement rig is involved.
 
-Only the separate monitor scene prop has its personal screenshot removed and
-replaced with an authored backend terminal. Original photos, author project
+The monitor uses its original generic glow mask, and an authored backend terminal
+is mapped onto the separate physical display. Original photos, author project
 screenshots, author links, analytics, encryption helper/key and author-specific
 chat/chess binaries are absent. The reference's CTA is adapted to the verified
 resume and LinkedIn links.

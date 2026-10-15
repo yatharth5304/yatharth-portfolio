@@ -5,6 +5,7 @@ import { gsap } from "gsap";
 import Lenis from "lenis";
 import { config } from "../config";
 import "./styles/Navbar.css";
+import { sectionTop } from '../utils/sectionNavigation';
 
 gsap.registerPlugin(ScrollTrigger);
 export let lenis: Lenis | null = null;
@@ -19,7 +20,7 @@ const Navbar = () => {
     const raf=(time:number) => {instance.raf(time);frame=requestAnimationFrame(raf);};frame=requestAnimationFrame(raf);
     instance.on('scroll', ScrollTrigger.update);
     const links = Array.from(document.querySelectorAll<HTMLAnchorElement>('.header ul a'));
-    const navigate = (e:Event) => {e.preventDefault();const link=e.currentTarget as HTMLAnchorElement;const selector=link.dataset.href;const target=selector?document.querySelector(selector) as HTMLElement:null;if(target)instance.scrollTo(target,{offset:0,duration:reduced?0:1.5});};
+    const navigate = (e:Event) => {e.preventDefault();const link=e.currentTarget as HTMLAnchorElement;const selector=link.dataset.href;const target=selector?document.querySelector(selector) as HTMLElement:null;if(target)instance.scrollTo(sectionTop(target),{offset:0,duration:reduced?0:1.5});};
     links.forEach(link=>link.addEventListener('click',navigate));
     const resize=()=>instance.resize();window.addEventListener('resize',resize);
     return () => {cancelAnimationFrame(frame);links.forEach(link=>link.removeEventListener('click',navigate));window.removeEventListener('resize',resize);instance.destroy();if(lenis===instance)lenis=null;};

@@ -3,6 +3,13 @@ import { GLTFLoader } from 'three-stdlib';
 import { prepareScene } from './prepareScene';
 export default function setCharacter(renderer: THREE.WebGLRenderer, scene: THREE.Scene, camera: THREE.PerspectiveCamera) {
     const loader = new GLTFLoader();
+    // Embedded GLB images are blob URLs. ImageBitmapLoader fetches those URLs
+    // (connect-src), while production deliberately only permits them as images
+    // (img-src). Decode through <img> without widening the site's CSP.
+    loader.register(parser => {
+        parser.textureLoader = new THREE.TextureLoader(loader.manager);
+        return { name: 'PORTFOLIO_image_decoder', beforeRoot: () => null };
+    });
     return { async loadCharacter() {
             const gltf = await loader.loadAsync('/models/yatharth-developer.glb');
             prepareScene(gltf);

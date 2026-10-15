@@ -13,6 +13,8 @@ import Work from "./Work";
 import TechStackNew from "./TechStackNew";
 import CallToAction from "./CallToAction";
 import setSplitText from "./utils/splitText";
+import gsap from 'gsap';
+import { setAllTimeline } from './utils/GsapScroll';
 
 const MainContainer = ({ children }: PropsWithChildren) => {
   const [isDesktopView, setIsDesktopView] = useState<boolean>(
@@ -21,15 +23,27 @@ const MainContainer = ({ children }: PropsWithChildren) => {
   const [shouldRenderCharacter, setShouldRenderCharacter] = useState(false);
 
   useEffect(() => {
+    let alive = true;
+    let resizeTimer = 0;
     const resizeHandler = () => {
-      setSplitText();
       setIsDesktopView(window.innerWidth > 1024);
+      clearTimeout(resizeTimer);
+      resizeTimer = window.setTimeout(() => { if (alive) setSplitText(); }, 150);
     };
-    resizeHandler();
+    document.fonts.ready.then(() => { if (alive) setSplitText(); });
     window.addEventListener("resize", resizeHandler);
     return () => {
+      alive = false;
+      clearTimeout(resizeTimer);
       window.removeEventListener("resize", resizeHandler);
     };
+  }, []);
+
+  // Career animation must also exist when the mobile fallback omits Scene.
+  useEffect(() => {
+    const media = gsap.matchMedia();
+    media.add('(max-width: 1024px)', () => setAllTimeline());
+    return () => media.revert();
   }, []);
 
   useEffect(() => {

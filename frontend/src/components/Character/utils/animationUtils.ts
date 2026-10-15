@@ -5,6 +5,7 @@ import { eyebrowBoneNames, typingBoneNames } from "../../../data/boneData";
 const setAnimations = (gltf: GLTF) => {
   let character = gltf.scene;
   let mixer = new THREE.AnimationMixer(character);
+  let blinkTimer = 0;
   if (gltf.animations) {
     const introClip = gltf.animations.find(
       (clip) => clip.name === "introAnimation"
@@ -39,7 +40,8 @@ const setAnimations = (gltf: GLTF) => {
     const introAction = mixer.clipAction(introClip!);
     introAction.clampWhenFinished = true;
     introAction.reset().play();
-    setTimeout(() => {
+    clearTimeout(blinkTimer);
+    blinkTimer = window.setTimeout(() => {
       const blink = gltf.animations.find((clip) => clip.name === "Blink");
       mixer.clipAction(blink!).play().fadeIn(0.5);
     }, 2500);
@@ -81,7 +83,7 @@ const setAnimations = (gltf: GLTF) => {
     };
   }
   const intro = gltf.animations.find(clip => clip.name === 'introAnimation');
-  return { mixer, startIntro, hover, isIntroPlaying: () => intro ? (mixer.existingAction(intro)?.isRunning() ?? false) : false };
+  return { mixer, startIntro, hover, dispose: () => { clearTimeout(blinkTimer); mixer.stopAllAction(); mixer.uncacheRoot(character); }, isIntroPlaying: () => intro ? (mixer.existingAction(intro)?.isRunning() ?? false) : false };
 };
 
 const createBoneAction = (
